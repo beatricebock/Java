@@ -10,19 +10,19 @@ import java.awt.event.WindowEvent;
 /**
  * Created by beatr on 22/1/2017.
  */
-public class Menu extends JFrame implements ActionListener{
+public class Menu extends JFrame {
 
-    public void menu ()
+    public Menu ()
     {
         setSize(500,500);
         setLocation(100,300);
-        setLayout(new BorderLayout());
+        setLayout(new FlowLayout());
         setTitle("Menu");
 
-        Panel panel = new Panel();
-        panel.add(new Label("Menu"));
+        Button menuBtn = new Button("Option 1");
 
-        panel.setVisible(true);
+        add(new Label("Menu"));
+        add(menuBtn);
 
         addWindowListener(new WindowAdapter()
         {
@@ -31,6 +31,13 @@ public class Menu extends JFrame implements ActionListener{
         {
             dispose();
         }
+        });
+
+        menuBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                add(new Label("Option 1"));
+            }
         });
 
         setVisible(true);
