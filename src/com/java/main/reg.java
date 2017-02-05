@@ -14,14 +14,14 @@ public class reg extends JFrame {
     public reg () {
 
         //Frame setup
-        setSize(500, 500);
-        setLocation(100, 300);
+        setSize(500, 300);
+        setLocation(400, 200);
         setLayout(new BorderLayout());
         setTitle("Register New Member");
 
         //Panel with input fields
         Panel inputPanel = new Panel();
-        inputPanel.setLayout(new FlowLayout());
+        inputPanel.setLayout(new GridLayout(0,2, 10,10));
 
         TextField nameTxt = new TextField(20);
         Choice memberType = new Choice();

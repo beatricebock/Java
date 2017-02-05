@@ -15,8 +15,8 @@ public class Menu extends JFrame {
 
     public Menu ()
     {
-        setSize(500,500);
-        setLocation(100,300);
+        setSize(500,300);
+        setLocation(400,200);
         setLayout(new BorderLayout());
         setTitle("Menu");
 
@@ -28,7 +28,7 @@ public class Menu extends JFrame {
 
         //Panel for menu options
         Panel buttonPanel = new Panel();
-        buttonPanel.setLayout(new GridLayout(0,1, 30, 10));
+        buttonPanel.setLayout(new GridLayout(4,1, 30, 10));
         Button newMember = new Button("Add New Member");
         Button modify = new Button("Modify Existing Member");
         Button payment = new Button("Payment");

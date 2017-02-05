@@ -19,8 +19,8 @@ public class Login extends JFrame {
 
     public Login () {
 
-        setSize(500, 500);
-        setLocation(100, 300);
+        setSize(500, 300);
+        setLocation(400, 200);
         setTitle("Login");
 
 
