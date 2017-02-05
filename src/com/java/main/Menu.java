@@ -28,7 +28,7 @@ public class Menu extends JFrame {
 
         //Panel for menu options
         Panel buttonPanel = new Panel();
-        buttonPanel.setLayout(new FlowLayout());
+        buttonPanel.setLayout(new GridLayout(0,1, 30, 10));
         Button newMember = new Button("Add New Member");
         Button modify = new Button("Modify Existing Member");
         Button payment = new Button("Payment");
@@ -43,6 +43,16 @@ public class Menu extends JFrame {
         add(titlePanel, BorderLayout.PAGE_START);
         add(buttonPanel, BorderLayout.CENTER);
 
+
+        //Methods for Action Buttons
+        newMember.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                reg Reg = new reg();
+                dispose();
+            }
+        });
+
         //Window Listener for "Close Window"
         addWindowListener(new WindowAdapter()
         {
@@ -53,20 +63,9 @@ public class Menu extends JFrame {
         }
         });
 
-        //Methods for Action Buttons
-        newMember.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
 
         setVisible(true);
     }
 
-    public void actionPerformed (ActionEvent e)
-    {
-
-    }
 
 }
