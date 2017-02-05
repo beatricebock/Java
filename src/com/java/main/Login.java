@@ -10,7 +10,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 /**
- * Created by beatr on 22/1/2017.
+ This is the class for the login page
  */
 public class Login extends JFrame {
 
