@@ -71,7 +71,6 @@ public class RegGUI extends JFrame implements ActionListener {
             case "Non-Deluxe":
                 pkgLogic nonDeluxe = new pkgLogic();
                 add(new Label("Total fees is: " + nonDeluxe.pkgLogic(300,100,months)));
-            
         }
     }
 
