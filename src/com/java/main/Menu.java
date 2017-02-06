@@ -48,7 +48,7 @@ public class Menu extends JFrame {
         newMember.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reg Reg = new reg();
+                RegGUI Reg = new RegGUI();
                 dispose();
             }
         });

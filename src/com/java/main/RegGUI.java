@@ -3,15 +3,17 @@ package com.java.main;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.*;
 
 /**
  * GUI for New Member registration
  */
-public class reg extends JFrame {
+public class RegGUI extends JFrame implements ActionListener {
 
-    public reg () {
+    public RegGUI () {
 
         //Frame setup
         setSize(500, 300);
@@ -24,10 +26,13 @@ public class reg extends JFrame {
         inputPanel.setLayout(new GridLayout(0,2, 10,10));
 
         TextField nameTxt = new TextField(20);
-        Choice memberType = new Choice();
-        memberType.add("Deluxe");
-        memberType.add("Non-Deluxe");
-        memberType.add("Week-Day");
+        String [] memberTypes = {"Deluxe", "Non-Deluxe", "Week-Day"};
+        JComboBox memberType = new JComboBox(memberTypes);
+        memberType.addActionListener(this);
+        //Choice memberType = new Choice();
+        //memberType.add("Deluxe");
+        //memberType.add("Non-Deluxe");
+        //memberType.add("Week-Day");
 
         inputPanel.add(new Label("Name:"));
         inputPanel.add(nameTxt);
@@ -35,8 +40,6 @@ public class reg extends JFrame {
         inputPanel.add(memberType);
 
         add(inputPanel);
-
-
 
         //Window Listener for "Close Window"
         addWindowListener(new WindowAdapter() {
@@ -49,4 +52,8 @@ public class reg extends JFrame {
         setVisible(true);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
 }

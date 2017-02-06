@@ -9,15 +9,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+
 /**
- This is the class for the login page
+ This is the class for the login page GUI
  */
 public class Login extends JFrame {
 
-    TextField userTxt = new TextField("Enter Username");
-    Button submitBtn = new Button("Login");
 
     public Login () {
+
+        TextField userTxt = new TextField("Enter Username");
+        TextField pwdText = new TextField("Enter Password");
+        Button submitBtn = new Button("Login");
+
 
         setSize(500, 300);
         setLocation(400, 200);
@@ -27,6 +31,8 @@ public class Login extends JFrame {
         setLayout(new FlowLayout());
         add(new Label("Username:"));
         add(userTxt);
+        add(new Label("Password: "));
+        add(pwdText);
         add(submitBtn);
 
 
