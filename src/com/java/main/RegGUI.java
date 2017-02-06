@@ -13,10 +13,7 @@ import java.io.*;
  * GUI for New Member registration
  */
 public class RegGUI extends JFrame implements ActionListener {
-
-    TextField nameTxt = new TextField(20);
-    TextField monthTxt = new TextField(20);
-    public int months = Integer.parseInt(monthTxt.getText());
+    private int months;
 
     public RegGUI () {
 
@@ -33,6 +30,16 @@ public class RegGUI extends JFrame implements ActionListener {
         String [] memberTypes = {"Deluxe", "Non-Deluxe", "Week-Day"};
         JComboBox memberType = new JComboBox(memberTypes);
         memberType.addActionListener(this);
+
+        TextField nameTxt = new TextField(20);
+        TextField monthTxt = new TextField(20);
+        try
+        {
+            months = Integer.parseInt(monthTxt.getText());
+        }
+        catch (IllegalArgumentException e){
+            add(new Label("Enter integers only"));
+        }
 
         inputPanel.add(new Label("Name:"));
         inputPanel.add(nameTxt);
@@ -64,7 +71,7 @@ public class RegGUI extends JFrame implements ActionListener {
             case "Non-Deluxe":
                 pkgLogic nonDeluxe = new pkgLogic();
                 add(new Label("Total fees is: " + nonDeluxe.pkgLogic(300,100,months)));
-
+            
         }
     }
 
