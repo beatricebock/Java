@@ -19,7 +19,14 @@ public class Payment extends JFrame {
         setLayout(new BorderLayout());
         setTitle("Register New Member");
 
-
+        //Validation for Months textfield
+        //try
+        //{
+        //    months = Integer.parseInt(monthTxt.getText());
+        //}
+        //catch (IllegalArgumentException e){
+        //    JOptionPane.showMessageDialog(null,"Enter integers only");
+        //}
 
         addWindowListener(new WindowAdapter() {
             @Override

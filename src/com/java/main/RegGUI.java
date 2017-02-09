@@ -47,7 +47,7 @@ public class RegGUI extends JFrame {
             months = Integer.parseInt(monthTxt.getText());
         }
         catch (IllegalArgumentException e){
-            add(new Label("Enter integers only"));
+            JOptionPane.showMessageDialog(null,"Enter integers only");
         }
 
         //buttons
@@ -125,6 +125,10 @@ public class RegGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 monthTxt.setText(" ");
                 nameTxt.setText(" ");
+
+                //the combobox disables when this button is pressed,
+                //the commands below makes a new instance of the class to
+                // refresh the combobox
                 dispose();
                 RegGUI regGUI = new RegGUI();
             }
