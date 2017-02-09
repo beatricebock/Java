@@ -19,8 +19,8 @@ public class RegGUI extends JFrame {
     int totalfees = 0; //Default fees
 
     //Elements requiring global access
-    TextField nameTxt = new TextField(20);
-    TextField monthTxt = new TextField(20);
+    TextField txtName = new TextField(20);
+    TextField txtMonth = new TextField(20);
     Label infoLbl = new Label();
 
 
@@ -41,14 +41,6 @@ public class RegGUI extends JFrame {
         String [] memberTypes = {"Deluxe", "Non-Deluxe", "Week-Day"};
         JComboBox memberType = new JComboBox(memberTypes);
 
-        //Validation for Months textfield
-        try
-        {
-            months = Integer.parseInt(monthTxt.getText());
-        }
-        catch (IllegalArgumentException e){
-            JOptionPane.showMessageDialog(null,"Enter integers only");
-        }
 
         //buttons
         Button confirmBtn = new Button("Confirm");
@@ -57,9 +49,9 @@ public class RegGUI extends JFrame {
 
         //Add elements to frame
         inputPanel.add(new Label("Name:"));
-        inputPanel.add(nameTxt);
+        inputPanel.add(txtName);
         inputPanel.add(new Label("Months: "));
-        inputPanel.add(monthTxt);
+        inputPanel.add(txtMonth);
         inputPanel.add(new Label("Membership Types:"));
         inputPanel.add(memberType);
         inputPanel.add(infoLbl);
@@ -105,8 +97,17 @@ public class RegGUI extends JFrame {
         {
              @Override
              public void actionPerformed(ActionEvent e) {
+                 //Validation for Months textfield
+                 try
+                 {
+                     months = Integer.parseInt(txtMonth.getText());
+                 }
+                 catch (IllegalArgumentException ec){
+                     JOptionPane.showMessageDialog(null,"Enter integers only");
+                 }
+
                  JOptionPane.showConfirmDialog(null, "Confirm entered information and enter information into database?");
-                 infoLbl.setText("Total Fees are RM" + totalfees + " for new member, " + nameTxt.getText());
+                 infoLbl.setText("Total Fees are RM" + totalfees + " for new member, " + txtName.getText());
              }
          });
 
@@ -123,8 +124,8 @@ public class RegGUI extends JFrame {
         clearBtn.addActionListener((new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                monthTxt.setText(" ");
-                nameTxt.setText(" ");
+                txtMonth.setText(" ");
+                txtName.setText(" ");
 
                 //the combobox disables when this button is pressed,
                 //the commands below makes a new instance of the class to
