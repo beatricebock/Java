@@ -18,15 +18,14 @@ public class Login extends JFrame {
 
     public Login () {
 
-        TextField userTxt = new TextField("Enter Username");
-        TextField pwdText = new TextField("Enter Password");
-        Button submitBtn = new Button("Login");
-
 
         setSize(500, 300);
         setLocation(400, 200);
         setTitle("Login");
 
+        TextField userTxt = new TextField("Enter Username");
+        TextField pwdText = new TextField("Enter Password");
+        Button submitBtn = new Button("Login");
 
         setLayout(new FlowLayout());
         add(new Label("Username:"));

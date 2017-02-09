@@ -9,13 +9,12 @@ public class pkgLogic
     {
     private int regFee;
     private int monthFee;
-    private int calcFee;
 
     public  int pkgLogic(int rf, int mf, int months)
     {
         regFee = rf;
         monthFee = mf;
-        return calcFee = months * monthFee + regFee;
+        return months * monthFee + regFee;
     }
 
 }
