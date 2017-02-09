@@ -53,6 +53,14 @@ public class Menu extends JFrame {
             }
         });
 
+        payment.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Payment payment = new Payment();
+                dispose();
+            }
+        });
+
 
 
         //Window Listener for "Close Window"

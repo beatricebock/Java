@@ -106,7 +106,7 @@ public class RegGUI extends JFrame {
              @Override
              public void actionPerformed(ActionEvent e) {
                  JOptionPane.showConfirmDialog(null, "Confirm entered information and enter information into database?");
-                 infoLbl.setText("Total Fees are RM" + totalfees);
+                 infoLbl.setText("Total Fees are RM" + totalfees + " for new member, " + nameTxt.getText());
              }
          });
 
@@ -125,6 +125,8 @@ public class RegGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 monthTxt.setText(" ");
                 nameTxt.setText(" ");
+                dispose();
+                RegGUI regGUI = new RegGUI();
             }
         }));
 

@@ -12,6 +12,22 @@ import java.awt.event.WindowEvent;
  */
 public class Payment extends JFrame {
     public Payment (){
-        
+
+        //Frame setup
+        setSize(500,300);
+        setLocation(400, 200);
+        setLayout(new BorderLayout());
+        setTitle("Register New Member");
+
+
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
+
+        setVisible(true);
     }
 }
