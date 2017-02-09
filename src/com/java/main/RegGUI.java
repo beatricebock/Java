@@ -77,7 +77,7 @@ public class RegGUI extends JFrame {
             }
         });
 
-        //Action Listener for the combobox 
+        //Action Listener for the combobox
         memberType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
