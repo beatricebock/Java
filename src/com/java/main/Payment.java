@@ -1,8 +1,6 @@
 package com.java.main;
 
 import javax.swing.*;
-import javax.swing.*;
-import javax.xml.soap.Text;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +10,9 @@ import java.awt.event.WindowEvent;
  * GUI and methods for Payment module
  */
 public class Payment extends JFrame {
+    String paymentType, membership;
+    int fee;
+
     public Payment (){
 
         //Frame setup
@@ -31,15 +32,74 @@ public class Payment extends JFrame {
         TextField txtAmount = new TextField();
 
         //Combo boxes for input
-        String payTypes [] = {"Monthly", "Registration"};
+        String payTypes[] = {"Monthly", "Registration"};
         JComboBox cbPayType = new JComboBox(payTypes);
         String memberTypes[] = {"Deluxe", "Non-Deluxe", "Week-Day"};
         JComboBox cbMemberType = new JComboBox(memberTypes);
 
+        //Functions for combo boxes
+        //Logic to determine string value for method parameter
+        cbMemberType.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JComboBox cbMemberType = (JComboBox) e.getSource();
+                String memberTypes = (String) cbMemberType.getSelectedItem();
+                switch(memberTypes){
+                    case "Deluxe":
+                        membership = "Deluxe";
+                        break;
+                    case "Non-Deluxe":
+                        membership = "Non-Deluxe";
+                        break;
+                    case "Week-Day":
+                        membership = "Week-Day";
+                        break;
+                }
+            }
+        });
+
+        //Determines feeLogic method's parameters
+        //Logic to decide which values to add into the FeeLogic method call
+        cbPayType.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JComboBox cbPayType = (JComboBox) e.getSource();
+                String payTypes = (String) cbPayType.getSelectedItem();
+
+                FeeLogic feeLogic = new FeeLogic();
+                switch(payTypes){
+                    case "Registration":
+                        fee = feeLogic.FeeLogic(membership, 500, 300, 180);
+                        break;
+                    case "Monthly":
+                        fee = feeLogic.FeeLogic(membership,120,100,75);
+                        break;
+                }
+
+            }
+        });
+
+
         //Buttons
-        Button btnMenu = new Button("<< Back to Main Menu");
+        Button btnMenu = new Button("<< Main Menu");
         Button btnConfirm = new Button("Confirm");
         Button btnClear = new Button("Clear");
+
+        //Functions for Buttons
+        btnMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                Menu menu = new Menu();
+            }
+        });
+
+        btnConfirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
 
         //Add labels to input panel
         inputPanel.add(new Label("Member ID:"));
@@ -59,10 +119,6 @@ public class Payment extends JFrame {
 
         add(inputPanel,"Center");
         add(buttonPanel, "South");
-
-
-        //monthly fees
-        //FeeLogic feeLogic = new FeeLogic(string, 120, 100, 75);
 
         addWindowListener(new WindowAdapter() {
             @Override
