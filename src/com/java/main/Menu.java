@@ -29,14 +29,14 @@ public class Menu extends JFrame {
         //Panel for menu options
         Panel buttonPanel = new Panel();
         buttonPanel.setLayout(new GridLayout(4,1, 30, 10));
-        Button newMember = new Button("Add New Member");
-        Button modify = new Button("Modify Existing Member");
-        Button payment = new Button("Payment");
-        Button exit = new Button("Exit System");
-        buttonPanel.add(newMember);
-        buttonPanel.add(modify);
-        buttonPanel.add(payment);
-        buttonPanel.add(exit);
+        Button btnNewMember = new Button("Add New Member");
+        Button btnModify = new Button("Modify Existing Member");
+        Button btnPayment = new Button("Payment");
+        Button btnExit = new Button("Exit System");
+        buttonPanel.add(btnNewMember);
+        buttonPanel.add(btnModify);
+        buttonPanel.add(btnPayment);
+        buttonPanel.add(btnExit);
 
 
         //Add panels to frame
@@ -45,7 +45,7 @@ public class Menu extends JFrame {
 
 
         //Methods for Action Buttons
-        newMember.addActionListener(new ActionListener() {
+        btnNewMember.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 RegGUI Reg = new RegGUI();
@@ -53,7 +53,7 @@ public class Menu extends JFrame {
             }
         });
 
-        payment.addActionListener(new ActionListener() {
+        btnPayment.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Payment payment = new Payment();

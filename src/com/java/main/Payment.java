@@ -23,6 +23,8 @@ public class Payment extends JFrame {
         //Panels for input
         Panel inputPanel = new Panel();
         inputPanel.setLayout(new GridLayout(0,2));
+        Panel buttonPanel = new Panel();
+        buttonPanel.setLayout(new FlowLayout());
 
         //Text fields for input
         TextField txtMemberID = new TextField();
@@ -35,8 +37,11 @@ public class Payment extends JFrame {
         JComboBox cbMemberType = new JComboBox(memberTypes);
 
         //Buttons
+        Button btnMenu = new Button("<< Back to Main Menu");
+        Button btnConfirm = new Button("Confirm");
+        Button btnClear = new Button("Clear");
 
-        //Add labels to panel
+        //Add labels to input panel
         inputPanel.add(new Label("Member ID:"));
         inputPanel.add(txtMemberID);
         inputPanel.add(new Label("Membership Type:"));
@@ -46,8 +51,14 @@ public class Payment extends JFrame {
         inputPanel.add(new Label("Amount Paid:"));
         inputPanel.add(txtAmount);
 
+        //Add buttons to button panel
+        buttonPanel.add(btnMenu);
+        buttonPanel.add(btnConfirm);
+        buttonPanel.add(btnClear);
 
-        add(inputPanel);
+
+        add(inputPanel,"Center");
+        add(buttonPanel, "South");
 
 
         //monthly fees
@@ -63,3 +74,13 @@ public class Payment extends JFrame {
         setVisible(true);
     }
 }
+
+//Validation for Months textfield
+//try
+//{
+//months = Integer.parseInt(txtMonth.getText());
+//}
+//catch (IllegalArgumentException ec){
+//JOptionPane.showMessageDialog(null,"Enter integers only");
+//}
+
