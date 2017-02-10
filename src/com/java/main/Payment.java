@@ -27,9 +27,8 @@ public class Payment extends JFrame {
         Panel buttonPanel = new Panel();
         buttonPanel.setLayout(new FlowLayout());
 
-        //Text fields for input
+        //Text field for input
         TextField txtMemberID = new TextField();
-        TextField txtAmount = new TextField();
 
         //Combo boxes for input
         String payTypes[] = {"Monthly", "Registration"};
@@ -97,7 +96,28 @@ public class Payment extends JFrame {
         btnConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                //validation for Member ID text field.
+                String memberID = txtMemberID.getText();
+                boolean incorrect = true;
+                while(incorrect){
+                    try{Integer.parseInt(memberID); incorrect = false;}
+                    catch (NumberFormatException nfe){
+                        memberID = JOptionPane.showInputDialog("Invalid input. Please " + "enter a memberID that consists of only integers.");
+                    }
+                }
+                JOptionPane.showConfirmDialog(null,"Confirm payment of RM" + fee + " from MemberID: " + memberID + "?");
+                JOptionPane.showMessageDialog(null,"Payment of RM" + fee + " Paid by MemberID " + memberID);
+
+            }
+        });
+
+        btnClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //clear button re-initializes this module to re-activate combo boxes
+                //and clear text boxes.
+                dispose();
+                Payment payment = new Payment();
             }
         });
 
@@ -108,8 +128,6 @@ public class Payment extends JFrame {
         inputPanel.add(cbMemberType);
         inputPanel.add(new Label("Payment Type"));
         inputPanel.add(cbPayType);
-        inputPanel.add(new Label("Amount Paid:"));
-        inputPanel.add(txtAmount);
 
         //Add buttons to button panel
         buttonPanel.add(btnMenu);
