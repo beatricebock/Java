@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.Random;
@@ -107,26 +108,23 @@ public class Payment extends JFrame {
 
                 //validation for Member ID text field.
                 String memberID = txtMemberID.getText();
-                boolean incorrect = true;
-                while(incorrect){
-                    try{Integer.parseInt(memberID); incorrect = false;}
-                    catch (NumberFormatException nfe){
-                        memberID = JOptionPane.showInputDialog("Invalid input. Please " + "enter a memberID that consists of only integers.");
+                    try{
+                        Integer.parseInt(memberID);
+                        JOptionPane.showConfirmDialog(null,"Confirm payment of RM" + fee + " from MemberID: " + memberID + "?");
+                        try {
+                            PrintWriter outputFile = new PrintWriter(new FileWriter("payment", true));
+                            outputFile.append(randomNum + ":" + date.toString() + ":" + txtMemberID.getText() + ":" + fee + "\n");
+                            JOptionPane.showMessageDialog(null,"Payment of RM" + fee + " Paid by MemberID " + memberID);
+
+                            outputFile.close();
+
+                        }catch (Exception fileExcp) {
+                            JOptionPane.showMessageDialog(null,"Error: " + fileExcp.getMessage());
+                        }
+
+                    } catch (NumberFormatException nfe) {
+                        JOptionPane.showMessageDialog(null, "Invalid input. Please enter a memberID that consists of only integers.");
                     }
-                }
-                JOptionPane.showConfirmDialog(null,"Confirm payment of RM" + fee + " from MemberID: " + memberID + "?");
-                try {
-                    PrintWriter outputFile = new PrintWriter("payment");
-                    outputFile.println(randomNum + ":" + date.toString() + ":" + txtMemberID.getText() + ":" + fee);
-                    JOptionPane.showMessageDialog(null,"Payment of RM" + fee + " Paid by MemberID " + memberID);
-
-                    outputFile.close();
-
-                }catch (Exception fileExcp) {
-                    JOptionPane.showMessageDialog(null,"Error: " + fileExcp.getMessage());
-                }
-
-
             }
         });
 

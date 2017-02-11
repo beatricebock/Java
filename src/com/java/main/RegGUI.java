@@ -94,8 +94,8 @@ public class RegGUI extends JFrame {
                  JOptionPane.showMessageDialog(null, "New member added.\nName: " + txtName.getText() + "\nMember ID: " + randomNum + "\nMembership Type: " + member);
 
                  try {
-                     PrintWriter outputFile = new PrintWriter("members");
-                     outputFile.println(randomNum + ":" + txtName.getText() + ":" + member);
+                     PrintWriter outputFile = new PrintWriter(new FileWriter("members", true));
+                     outputFile.append(randomNum + ":" + txtName.getText() + ":" + member + "\n");
                      outputFile.close();
 
                  }catch (Exception fileExcp) {
