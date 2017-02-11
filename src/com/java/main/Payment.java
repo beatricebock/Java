@@ -6,6 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.PrintWriter;
+import java.util.Date;
+import java.util.Random;
+
 /**
  * GUI and methods for Payment module
  */
@@ -96,6 +100,11 @@ public class Payment extends JFrame {
         btnConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Date date = new Date();
+
+                Random rand = new Random();
+                int randomNum = rand.nextInt((99999-10000)+1) + 10000;
+
                 //validation for Member ID text field.
                 String memberID = txtMemberID.getText();
                 boolean incorrect = true;
@@ -106,7 +115,17 @@ public class Payment extends JFrame {
                     }
                 }
                 JOptionPane.showConfirmDialog(null,"Confirm payment of RM" + fee + " from MemberID: " + memberID + "?");
-                JOptionPane.showMessageDialog(null,"Payment of RM" + fee + " Paid by MemberID " + memberID);
+                try {
+                    PrintWriter outputFile = new PrintWriter("payment");
+                    outputFile.println(randomNum + ":" + date.toString() + ":" + txtMemberID.getText() + ":" + fee);
+                    JOptionPane.showMessageDialog(null,"Payment of RM" + fee + " Paid by MemberID " + memberID);
+
+                    outputFile.close();
+
+                }catch (Exception fileExcp) {
+                    JOptionPane.showMessageDialog(null,"Error: " + fileExcp.getMessage());
+                }
+
 
             }
         });
