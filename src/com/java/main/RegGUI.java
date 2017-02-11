@@ -71,26 +71,12 @@ public class RegGUI extends JFrame {
         });
 
         //Action Listener for the combobox
+        //Reads the selected item and puts it in a string variable
         memberType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JComboBox memberType = (JComboBox) e.getSource();
                 String memberTypes = (String) memberType.getSelectedItem();
-
-                pkgLogic packages = new pkgLogic();
-                switch (memberTypes) {
-                    case "Non-Deluxe":
-                        totalfees = packages.pkgLogic(300, 100, months);
-                        break;
-                    case "Deluxe":
-                        totalfees = packages.pkgLogic(500, 120, months);
-                        break;
-                    case "Week-Day":
-                        totalfees = packages.pkgLogic(180,75, months);
-                        break;
-                    default:
-                        break;
-                }
                 member = memberTypes;
             }
         });
