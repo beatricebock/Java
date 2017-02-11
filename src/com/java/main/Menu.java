@@ -48,7 +48,7 @@ public class Menu extends JFrame {
         btnNewMember.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RegGUI Reg = new RegGUI();
+                Register Reg = new Register();
                 dispose();
             }
         });
@@ -57,6 +57,21 @@ public class Menu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Payment payment = new Payment();
+                dispose();
+            }
+        });
+
+        btnModify.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Modify mod = new Modify();
+                dispose();
+            }
+        });
+
+        btnExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });

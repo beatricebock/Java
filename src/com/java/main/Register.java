@@ -13,7 +13,7 @@ import java.util.Scanner;
 /**
  * GUI for New Member registration
  */
-public class RegGUI extends JFrame {
+public class Register extends JFrame {
 
     int months = 1; //Default month number
     int totalfees = 0; //Default fees
@@ -24,9 +24,7 @@ public class RegGUI extends JFrame {
     TextField txtMonth = new TextField(20);
 
 
-    public RegGUI () {
-
-
+    public Register () {
         //Frame setup
         setSize(500,300);
         setLocation(400, 200);
@@ -62,14 +60,6 @@ public class RegGUI extends JFrame {
 
         add(inputPanel, "Center");
         add(buttonPanel, "South");
-
-        //Window Listener for "Close Window"
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                dispose();
-            }
-        });
 
         //Action Listener for the combobox
         //Reads the selected item and puts it in a string variable
@@ -120,13 +110,22 @@ public class RegGUI extends JFrame {
                 txtMonth.setText(" ");
                 txtName.setText(" ");
 
-                //the combobox disables when this button is pressed,
-                //the commands below makes a new instance of the class to
-                // refresh the combobox
+                //the combobox disables when Confirm button is pressed,
+                /*the commands below makes a new instance of the class to
+                 refresh the combobox */
                 dispose();
-                RegGUI regGUI = new RegGUI();
+                Register reg = new Register();
             }
         }));
+
+        //Window Listener for "Close Window"
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
+
 
         setVisible(true);
     }
