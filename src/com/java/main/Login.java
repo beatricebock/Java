@@ -49,8 +49,10 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                dispose();
+                Menu menu = new Menu();
                 //login credential file
-                try {
+                /*try {
                     File file = new File("login");
                     Scanner inputFile = new Scanner(file);
 
@@ -76,7 +78,7 @@ public class Login extends JFrame {
 
                 }catch (Exception fileExcp) {
                    JOptionPane.showMessageDialog(null,"Error: " + fileExcp.getMessage());
-                }
+                }*/
             }
         });
 

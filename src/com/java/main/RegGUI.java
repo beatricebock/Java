@@ -8,6 +8,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Random;
 import java.io.*;
+import java.util.Scanner;
 
 /**
  * GUI for New Member registration
@@ -91,6 +92,15 @@ public class RegGUI extends JFrame {
 
                  JOptionPane.showConfirmDialog(null, "Confirm entered information and enter information into database?");
                  JOptionPane.showMessageDialog(null, "New member added.\nName: " + txtName.getText() + "\nMember ID: " + randomNum + "\nMembership Type: " + member);
+
+                 try {
+                     PrintWriter outputFile = new PrintWriter("members");
+                     outputFile.println(randomNum + ":" + txtName.getText() + ":" + member);
+                     outputFile.close();
+
+                 }catch (Exception fileExcp) {
+                     JOptionPane.showMessageDialog(null,"Error: " + fileExcp.getMessage());
+                 }
              }
          });
 
