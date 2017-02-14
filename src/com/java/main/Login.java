@@ -30,14 +30,17 @@ public class Login extends JFrame {
         TextField txtPwd = new TextField(20);
         Button submitBtn = new Button("Login");
 
-        Panel inputPanel = new Panel();
-        inputPanel.setLayout(new GridLayout(0, 2));
+        Panel inputPanel = new Panel(new GridLayout(2, 0));
+        Panel usernamePanel = new Panel(new FlowLayout());
+        Panel passPanel = new Panel(new FlowLayout());
         Panel buttonPanel = new Panel();
 
-        inputPanel.add(new Label("Username:"), "Left");
-        inputPanel.add(txtUser);
-        inputPanel.add(new Label("Password: "), "Left");
-        inputPanel.add(txtPwd);
+        usernamePanel.add(new Label("Username:"), "Left");
+        usernamePanel.add(txtUser);
+        passPanel.add(new Label("Password: "), "Left");
+        passPanel.add(txtPwd);
+        inputPanel.add(usernamePanel);
+        inputPanel.add(passPanel);
         buttonPanel.add(submitBtn);
 
         add(inputPanel, "Center");
@@ -49,11 +52,13 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                dispose();
-                Menu menu = new Menu();
+                //dispose();
+                //Menu menu = new Menu();
                 //login credential file
-                /*try {
-                    File file = new File("login");
+                try {
+                    String login;
+                    login = "login";
+                    File file = new File(login);
                     Scanner inputFile = new Scanner(file);
 
                     while(inputFile.hasNext())
@@ -63,10 +68,12 @@ public class Login extends JFrame {
                         String[] userindex = loginCred.split(":");
                         String username = userindex[0];
                         String password = userindex[1];
-                        JOptionPane.showMessageDialog(null, txtUser.getText()+ txtPwd.getText() + username + password);
+                        String inputUser = txtUser.getText().toString();
+                        String inputPass = txtPwd.getText().toString();
+                        JOptionPane.showMessageDialog(null, txtUser.getText() + txtPwd.getText() + userindex[0] + userindex[1]);
 
-                        if (txtUser.getText() == username && txtPwd.getText() == password){
-                            JOptionPane.showMessageDialog(null,"Login successful. Welcome, "+ username);
+                        if (username.equals(inputUser)&& password.equals(inputPass)){
+                            JOptionPane.showMessageDialog(null,"Login successful. Welcome, "+ userindex[0]);
                             inputFile.close();
                             Menu menu = new Menu();
                             menu.setVisible(true);
@@ -78,7 +85,7 @@ public class Login extends JFrame {
 
                 }catch (Exception fileExcp) {
                    JOptionPane.showMessageDialog(null,"Error: " + fileExcp.getMessage());
-                }*/
+                }
             }
         });
 
