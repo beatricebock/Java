@@ -50,7 +50,6 @@ public class Modify extends Frame {
         inputPanel.add(new Label("Membership Type: "));
         inputPanel.add(cbMemberType);
 
-
         buttonPanel.add(btnMenu);
         buttonPanel.add(btnPrev);
         buttonPanel.add(btnSave);
@@ -59,19 +58,25 @@ public class Modify extends Frame {
         add(inputPanel, "Center");
         add(buttonPanel, "South");
 
-        //Window Listener for "Close Window"
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                dispose();
-            }
-        });
+
 
         btnMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Menu menu = new Menu();
                 dispose();
+            }
+        });
+
+        //Window Listener for "Close Window"
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int input = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Confirm Logout", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+                if (input == JOptionPane.OK_OPTION)
+                {
+                    dispose();
+                }
             }
         });
 

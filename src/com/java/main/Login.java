@@ -85,10 +85,12 @@ public class Login extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                dispose();
+                int input = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Confirm Logout", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+                if (input == JOptionPane.OK_OPTION) {
+                    dispose();
+                }
             }
         });
-
 
         setVisible(true);
 

@@ -41,6 +41,28 @@ public class Payment extends JFrame {
         String memberTypes[] = {"Deluxe", "Non-Deluxe", "Week-Day"};
         JComboBox cbMemberType = new JComboBox(memberTypes);
 
+        //Buttons
+        Button btnMenu = new Button("<< Main Menu");
+        Button btnConfirm = new Button("Confirm");
+        Button btnClear = new Button("Clear");
+
+        //Add labels to input panel
+        inputPanel.add(new Label("Member ID:"));
+        inputPanel.add(txtMemberID);
+        inputPanel.add(new Label("Membership Type:"));
+        inputPanel.add(cbMemberType);
+        inputPanel.add(new Label("Payment Type"));
+        inputPanel.add(cbPayType);
+
+        //Add buttons to button panel
+        buttonPanel.add(btnMenu);
+        buttonPanel.add(btnConfirm);
+        buttonPanel.add(btnClear);
+
+
+        add(inputPanel,"Center");
+        add(buttonPanel, "South");
+
         //Functions for combo boxes
         //Logic to determine string value for method parameter
         cbMemberType.addActionListener(new ActionListener() {
@@ -83,12 +105,6 @@ public class Payment extends JFrame {
             }
         });
 
-
-        //Buttons
-        Button btnMenu = new Button("<< Main Menu");
-        Button btnConfirm = new Button("Confirm");
-        Button btnClear = new Button("Clear");
-
         //Functions for Buttons
         btnMenu.addActionListener(new ActionListener() {
             @Override
@@ -108,57 +124,44 @@ public class Payment extends JFrame {
 
                 //validation for Member ID text field.
                 String memberID = txtMemberID.getText();
-                    try{
-                        Integer.parseInt(memberID);
-                        JOptionPane.showConfirmDialog(null,"Confirm payment of RM" + fee + " from MemberID: " + memberID + "?");
-                        try {
-                            PrintWriter outputFile = new PrintWriter(new FileWriter("payment", true));
-                            outputFile.append(randomNum + ":" + date.toString() + ":" + txtMemberID.getText() + ":" + fee + "\n");
-                            JOptionPane.showMessageDialog(null,"Payment of RM" + fee + " Paid by MemberID " + memberID);
+                try{
+                    Integer.parseInt(memberID);
+                    JOptionPane.showConfirmDialog(null,"Confirm payment of RM" + fee + " from MemberID: " + memberID + "?");
+                    try {
+                        PrintWriter outputFile = new PrintWriter(new FileWriter("payment", true));
+                        outputFile.append(randomNum + ":" + date.toString() + ":" + txtMemberID.getText() + ":" + fee + "\n");
+                        JOptionPane.showMessageDialog(null,"Payment of RM" + fee + " Paid by MemberID " + memberID);
 
-                            outputFile.close();
+                        outputFile.close();
 
-                        }catch (Exception fileExcp) {
-                            JOptionPane.showMessageDialog(null,"Error: " + fileExcp.getMessage());
-                        }
-
-                    } catch (NumberFormatException nfe) {
-                        JOptionPane.showMessageDialog(null, "Invalid input. Please enter a memberID that consists of only integers.");
+                    }catch (Exception fileExcp) {
+                        JOptionPane.showMessageDialog(null,"Error: " + fileExcp.getMessage());
                     }
+
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Invalid input. Please enter a memberID that consists of only integers.");
+                }
             }
         });
 
         btnClear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //clear button re-initializes this module to re-activate combo boxes
-                //and clear text boxes.
+                //reset and clear form
                 dispose();
                 Payment payment = new Payment();
             }
         });
 
-        //Add labels to input panel
-        inputPanel.add(new Label("Member ID:"));
-        inputPanel.add(txtMemberID);
-        inputPanel.add(new Label("Membership Type:"));
-        inputPanel.add(cbMemberType);
-        inputPanel.add(new Label("Payment Type"));
-        inputPanel.add(cbPayType);
-
-        //Add buttons to button panel
-        buttonPanel.add(btnMenu);
-        buttonPanel.add(btnConfirm);
-        buttonPanel.add(btnClear);
-
-
-        add(inputPanel,"Center");
-        add(buttonPanel, "South");
-
+        //Window Listener for "Close Window"
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                dispose();
+                int input = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Confirm Logout", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+                if (input == JOptionPane.OK_OPTION)
+                {
+                    dispose();
+                }
             }
         });
 
