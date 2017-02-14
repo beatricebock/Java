@@ -39,7 +39,7 @@ public class Register extends JFrame {
 
         //Initialize Combo Box with membertypes
         String [] memberTypes = {"Deluxe", "Non-Deluxe", "Week-Day"};
-        JComboBox memberType = new JComboBox(memberTypes);
+        JComboBox cbMemberType = new JComboBox(memberTypes);
 
 
         //buttons
@@ -51,7 +51,7 @@ public class Register extends JFrame {
         inputPanel.add(new Label("Name:"));
         inputPanel.add(txtName);
         inputPanel.add(new Label("Membership Types:"));
-        inputPanel.add(memberType);
+        inputPanel.add(cbMemberType);
 
         //Add buttons to button panel
         buttonPanel.add(btnMenu);
@@ -63,11 +63,11 @@ public class Register extends JFrame {
 
         //Action Listener for the combobox
         //Reads the selected item and puts it in a string variable
-        memberType.addActionListener(new ActionListener() {
+        cbMemberType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JComboBox memberType = (JComboBox) e.getSource();
-                String memberTypes = (String) memberType.getSelectedItem();
+                JComboBox cbMemberType = (JComboBox) e.getSource();
+                String memberTypes = (String) cbMemberType.getSelectedItem();
                 member = memberTypes;
             }
         });
@@ -109,12 +109,7 @@ public class Register extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 txtMonth.setText(" ");
                 txtName.setText(" ");
-
-                //the combobox disables when Confirm button is pressed,
-                /*the commands below makes a new instance of the class to
-                 refresh the combobox */
-                dispose();
-                Register reg = new Register();
+                cbMemberType.setSelectedItem(null);
             }
         }));
 
