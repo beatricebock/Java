@@ -72,7 +72,12 @@ public class Menu extends JFrame {
         btnExit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                int input = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Confirm Logout", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+                if (input == JOptionPane.OK_OPTION)
+                {
+                    dispose();
+                }
+
             }
         });
 
