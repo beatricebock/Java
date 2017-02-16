@@ -17,7 +17,7 @@ import java.util.Scanner;
  * GUI and methods for Payment module
  */
 public class Payment extends JFrame {
-    String paymentType, membership;
+    String membership;
     int fee;
 
     public Payment (){
@@ -37,13 +37,10 @@ public class Payment extends JFrame {
         //Text field for input
         TextField txtMemberID = new TextField();
 
-        //Combo boxes for input
+        //Combo box for input
         String payTypes[] = {"Monthly", "Registration"};
         JComboBox cbPayType = new JComboBox(payTypes);
-/*
-        String memberTypes[] = {"Deluxe", "Non-Deluxe", "Week-Day"};
-        JComboBox cbMemberType = new JComboBox(memberTypes);
-*/
+
 
         //Buttons
         Button btnMenu = new Button("<< Main Menu");
@@ -53,8 +50,6 @@ public class Payment extends JFrame {
         //Add labels to input panel
         inputPanel.add(new Label("Member ID:"));
         inputPanel.add(txtMemberID);
- //       inputPanel.add(new Label("Membership Type:"));
- //       inputPanel.add(cbMemberType);
         inputPanel.add(new Label("Payment Type"));
         inputPanel.add(cbPayType);
 
@@ -67,26 +62,6 @@ public class Payment extends JFrame {
         add(inputPanel,"Center");
         add(buttonPanel, "South");
 
-        /*//Functions for combo boxes
-        //Logic to determine string value for method parameter
-        cbMemberType.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JComboBox cbMemberType = (JComboBox) e.getSource();
-                String memberTypes = (String) cbMemberType.getSelectedItem();
-                switch(memberTypes){
-                    case "Deluxe":
-                        membership = "Deluxe";
-                        break;
-                    case "Non-Deluxe":
-                        membership = "Non-Deluxe";
-                        break;
-                    case "Week-Day":
-                        membership = "Week-Day";
-                        break;
-                }
-            }
-        });*/
 
         //Determines feeLogic method's parameters
         //Logic to decide which values to add into the FeeLogic method call
@@ -122,6 +97,13 @@ public class Payment extends JFrame {
                             found = true;
                             break;
                         }else {
+                            found = false;
+                        }
+                    }
+                    if (found != true){
+                        JOptionPane.showMessageDialog(null,"Member does not exist.");
+                        txtMemberID.setText(" ");
+                        cbPayType.setSelectedItem(" ");
                     }
                 } catch (Exception member){
                     JOptionPane.showMessageDialog(null,"File does not exist");
