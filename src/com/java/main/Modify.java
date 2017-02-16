@@ -176,11 +176,7 @@ public class Modify extends Frame {
                 }else {
                     JOptionPane.showMessageDialog(null,"Overwrite successful");
                 }
-
-                overwrite.renameTo(oriFile);
-
-                JOptionPane.showMessageDialog(null,"Overwrite successful");
-        }
+            }
 
         });
 
