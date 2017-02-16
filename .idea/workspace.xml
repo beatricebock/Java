@@ -63,17 +63,23 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <file leaf-file-name="Payment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/java/main/Payment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
               <caret line="106" column="42" lean-forward="false" selection-start-line="106" selection-start-column="42" selection-end-line="106" selection-end-column="42" />
 =======
+=======
+>>>>>>> parent of 24f7b18... added validation for Modify
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/java/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
               <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+<<<<<<< HEAD
+>>>>>>> parent of 24f7b18... added validation for Modify
+=======
 >>>>>>> parent of 24f7b18... added validation for Modify
               <folding>
                 <element signature="imports" expanded="true" />
@@ -95,6 +101,7 @@
         </entry>
       </file>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <file leaf-file-name="Login.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/java/main/Login.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -105,6 +112,8 @@
           </provider>
         </entry>
       </file>
+=======
+>>>>>>> parent of 24f7b18... added validation for Modify
 =======
 >>>>>>> parent of 24f7b18... added validation for Modify
     </leaf>
@@ -151,12 +160,16 @@
         <option value="$PROJECT_DIR$/src/login" />
         <option value="$PROJECT_DIR$/login" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 24f7b18... added validation for Modify
         <option value="$PROJECT_DIR$/src/com/java/main/Main.java" />
         <option value="$PROJECT_DIR$/src/com/java/main/Payment.java" />
 >>>>>>> parent of 24f7b18... added validation for Modify
         <option value="$PROJECT_DIR$/src/com/java/main/Menu.java" />
         <option value="$PROJECT_DIR$/src/com/java/main/Edit.java" />
+<<<<<<< HEAD
 <<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/ValidateMember.java" />
         <option value="$PROJECT_DIR$/src/com/java/main/Login.java" />
@@ -166,6 +179,8 @@
         <option value="$PROJECT_DIR$/src/com/java/main/Register.java" />
         <option value="$PROJECT_DIR$/temp.txt" />
         <option value="$PROJECT_DIR$/src/com/java/main/Payment.java" />
+=======
+>>>>>>> parent of 24f7b18... added validation for Modify
 =======
 >>>>>>> parent of 24f7b18... added validation for Modify
         <option value="$PROJECT_DIR$/src/com/java/main/Modify.java" />
@@ -719,6 +734,32 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/java/main/pkgLogic.java">
+<<<<<<< HEAD
+=======
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/java/main/login" />
+    <entry file="file://$PROJECT_DIR$/src/com/java/main/members" />
+    <entry file="file://$PROJECT_DIR$/src/com/java/main/nonDeluxePkg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/java/main/FeeLogic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/java/main/Register.java">
+>>>>>>> parent of 24f7b18... added validation for Modify
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
@@ -799,6 +840,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/java/main/Payment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/payment">
 >>>>>>> parent of 24f7b18... added validation for Modify
       <provider selected="true" editor-type-id="text-editor">
@@ -825,15 +874,21 @@
       </provider>
     </entry>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/com/java/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
 =======
+=======
+>>>>>>> parent of 24f7b18... added validation for Modify
     <entry file="file://$PROJECT_DIR$/src/com/java/main/Modify.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="474">
           <caret line="166" column="70" lean-forward="false" selection-start-line="166" selection-start-column="70" selection-end-line="166" selection-end-column="70" />
+<<<<<<< HEAD
+>>>>>>> parent of 24f7b18... added validation for Modify
+=======
 >>>>>>> parent of 24f7b18... added validation for Modify
           <folding>
             <element signature="imports" expanded="true" />
@@ -842,8 +897,11 @@
       </provider>
     </entry>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/payment">
 =======
+=======
+>>>>>>> parent of 24f7b18... added validation for Modify
     <entry file="file://$PROJECT_DIR$/temp.txt">
 >>>>>>> parent of 24f7b18... added validation for Modify
       <provider selected="true" editor-type-id="text-editor">
@@ -869,6 +927,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/temp.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -900,6 +959,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="58">
           <caret line="153" column="0" lean-forward="true" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/com/java/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+>>>>>>> parent of 24f7b18... added validation for Modify
 =======
     <entry file="file://$PROJECT_DIR$/src/com/java/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">

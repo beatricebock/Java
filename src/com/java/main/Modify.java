@@ -180,61 +180,6 @@ public class Modify extends Frame {
                 overwrite.renameTo(oriFile);
 
                 JOptionPane.showMessageDialog(null,"Overwrite successful");
-                /*try {
-                    File ori = new File("members.txt");
-                    Scanner oriFile = new Scanner(ori);
->>>>>>> parent of 24f7b18... added validation for Modify
-
-                    while (oriFile.hasNext()) {
-                        String memberOri = oriFile.nextLine();
-                        String memberIndex[] = memberOri.split(":");
-                        String memberID = memberIndex[0];
-                        String memberName = memberIndex[1];
-                        String memberType = memberIndex[2];
-
-                        String inputID = txtSearch.getText();
-                        if (memberID.equals(inputID)) {
-                            String copyMemberID = lblMemberID.getText();
-                            String newName = txtName.getText();
-
-                            try {
-                                PrintWriter outputFile = new PrintWriter(new FileWriter("temp.txt", true));
-                                outputFile.append(copyMemberID + ":" + newName + ":" + newMemberType + "\n");
-                                JOptionPane.showMessageDialog(null,"Edited information for member ID:" + copyMemberID + "\nName: " + newName + "\nMembership Type: " + newMemberType);
-
-                            }catch (Exception writeExcp) {
-                                JOptionPane.showMessageDialog(null,"Error: " + writeExcp.getMessage());
-                            }
-
-                        }else {
-                            try {
-                                PrintWriter outputFile = new PrintWriter(new FileWriter("temp.txt", true));
-                                outputFile.append(memberID + ":" + memberName + ":" + memberType + "\n");
-                            }catch (Exception writeExcp) {
-                                JOptionPane.showMessageDialog(null,"Error: " + writeExcp.getMessage());
-                            }
-                        }
-
-                    }
-                    oriFile.close();
-
-                    System.gc();
-                    if (ori.delete()){
-                        JOptionPane.showMessageDialog(null, "Original file deleted");
-                    }else{
-                        JOptionPane.showMessageDialog(null,"File not deleted, operation failed");
-                    }
-
-                    File overwrite = new File("members.txt");
-                    boolean success = temp.renameTo(overwrite);
-                    if(!success){
-                        JOptionPane.showMessageDialog(null,"Error during data overwrite.");
-                    }
-
-
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-              }  */
         }
 
         });

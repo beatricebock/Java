@@ -11,9 +11,7 @@ import java.util.Scanner;
 public class Main {
     public static String user;
     public static void main (String[] args) throws IOException {
-
         Login login = new Login();
-        //Payment payment = new Payment();
 
     }
 }
