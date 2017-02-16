@@ -112,7 +112,6 @@ public class Modify extends Frame {
             }
         });
 
-        File finalTemp = temp;
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

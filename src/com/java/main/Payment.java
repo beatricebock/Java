@@ -40,8 +40,10 @@ public class Payment extends JFrame {
         //Combo boxes for input
         String payTypes[] = {"Monthly", "Registration"};
         JComboBox cbPayType = new JComboBox(payTypes);
+/*
         String memberTypes[] = {"Deluxe", "Non-Deluxe", "Week-Day"};
         JComboBox cbMemberType = new JComboBox(memberTypes);
+*/
 
         //Buttons
         Button btnMenu = new Button("<< Main Menu");
@@ -51,8 +53,8 @@ public class Payment extends JFrame {
         //Add labels to input panel
         inputPanel.add(new Label("Member ID:"));
         inputPanel.add(txtMemberID);
-        inputPanel.add(new Label("Membership Type:"));
-        inputPanel.add(cbMemberType);
+ //       inputPanel.add(new Label("Membership Type:"));
+ //       inputPanel.add(cbMemberType);
         inputPanel.add(new Label("Payment Type"));
         inputPanel.add(cbPayType);
 
@@ -65,7 +67,7 @@ public class Payment extends JFrame {
         add(inputPanel,"Center");
         add(buttonPanel, "South");
 
-        //Functions for combo boxes
+        /*//Functions for combo boxes
         //Logic to determine string value for method parameter
         cbMemberType.addActionListener(new ActionListener() {
             @Override
@@ -84,28 +86,47 @@ public class Payment extends JFrame {
                         break;
                 }
             }
-        });
+        });*/
 
         //Determines feeLogic method's parameters
         //Logic to decide which values to add into the FeeLogic method call
         cbPayType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JComboBox cbPayType = (JComboBox) e.getSource();
-                String payTypes = (String) cbPayType.getSelectedItem();
-                if(membership != null) {
-                    FeeLogic feeLogic = new FeeLogic();
-                    switch (payTypes) {
-                        case "Registration":
-                            fee = feeLogic.FeeLogic(membership, 500, 300, 180);
+                try {
+                    File file = new File("members.txt");
+                    Scanner inputFile = new Scanner(file);
+                    boolean found = false;
+
+                    while (inputFile.hasNext()) {
+                        String memberOri = inputFile.nextLine();
+                        String memberIndex[] = memberOri.split(":");
+                        String memberID = memberIndex[0];
+                        String memberType = memberIndex[2];
+
+                        String inputID = txtMemberID.getText();
+                        if (memberID.equals(inputID)) {
+                            membership = memberType;
+                            JComboBox cbPayType = (JComboBox) e.getSource();
+                            String payTypes = (String) cbPayType.getSelectedItem();
+                            FeeLogic feeLogic = new FeeLogic();
+                            switch (payTypes) {
+                                case "Registration":
+                                    fee = feeLogic.FeeLogic(membership, 500, 300, 180);
+                                    break;
+                                case "Monthly":
+                                    fee = feeLogic.FeeLogic(membership, 120, 100, 75);
+                                    break;
+                            }
+                            inputFile.close();
+                            found = true;
                             break;
-                        case "Monthly":
-                            fee = feeLogic.FeeLogic(membership, 120, 100, 75);
-                            break;
+                        }else {
                     }
-                }else {
-                    JOptionPane.showMessageDialog(null, "Select a Membership type first!");
+                } catch (Exception member){
+                    JOptionPane.showMessageDialog(null,"File does not exist");
                 }
+
             }
         });
 
@@ -140,6 +161,8 @@ public class Payment extends JFrame {
                             String memberOri = inputFile.nextLine();
                             String memberIndex[] = memberOri.split(":");
                             String indexMemberID = memberIndex[0];
+                            String indexMemberName = memberIndex[1];
+                            String indexMemberType = memberIndex[2];
 
                             if (indexMemberID.equals(inputID)) {
                                 found = true;
@@ -147,7 +170,7 @@ public class Payment extends JFrame {
                             }else {
                                 txtMemberID.setText(" ");
                                 cbPayType.setSelectedItem(" ");
-                                cbMemberType.setSelectedItem(" ");
+                               // cbMemberType.setSelectedItem(" ");
                                 found = false;
                             }
                         }
