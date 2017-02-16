@@ -115,7 +115,57 @@ public class Modify extends Frame {
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String oriFileName = "members.txt";
+                String tempFileName = "temp.txt";
+
+                BufferedReader br = null;
+                BufferedWriter bw = null;
+
                 try {
+                    br  = new BufferedReader(new FileReader(oriFileName));
+                    bw = new BufferedWriter(new FileWriter(tempFileName));
+
+                    String line;
+                    while ((line = br.readLine()) != null ){
+                        String memberIndex[] = line.split(":");
+                        String memberID = memberIndex[0];
+                        String memberName = memberIndex[1];
+                        String memberType = memberIndex[2];
+                        String inputID = txtSearch.getText();
+
+                        if (memberID.equals(inputID)){
+                            line = line.replace(memberName, txtName.getText());
+                            line = line.replace(memberType, cbMemberType.getSelectedItem().toString());
+                        }
+                        bw.write(line + "\n");
+                    }
+                } catch (Exception e2) {
+                    return;
+                }finally {
+                    try {
+                        if (br != null) {
+                            br.close();
+                        }
+                    } catch(IOException e2){
+
+                    }
+                    try {
+                        if (bw != null) {
+                            bw.close();
+                        }
+                    }catch (IOException e2){
+
+                    }
+                }
+
+                File oriFile = new File(oriFileName);
+                oriFile.delete();
+
+                File overwrite = new File(tempFileName);
+                overwrite.renameTo(oriFile);
+
+                JOptionPane.showMessageDialog(null,"Overwrite successful");
+                /*try {
                     File ori = new File("members.txt");
                     Scanner oriFile = new Scanner(ori);
 
@@ -151,7 +201,7 @@ public class Modify extends Frame {
 
                     }
                     oriFile.close();
-/*
+
                     System.gc();
                     if (ori.delete()){
                         JOptionPane.showMessageDialog(null, "Original file deleted");
@@ -164,12 +214,13 @@ public class Modify extends Frame {
                     if(!success){
                         JOptionPane.showMessageDialog(null,"Error during data overwrite.");
                     }
-*/
+
 
                 } catch (IOException e1) {
                     e1.printStackTrace();
-                }
-            }
+              }  */
+        }
+
         });
 
         btnMenu.addActionListener(new ActionListener() {
