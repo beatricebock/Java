@@ -73,6 +73,7 @@ public class Login extends JFrame {
                             menu.setVisible(true);
                             dispose();
                             inputFile.close();
+                            Main.user = txtUser.getText();
                             success = true;
 
                             break;

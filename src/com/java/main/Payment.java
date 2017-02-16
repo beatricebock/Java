@@ -6,10 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * GUI and methods for Payment module
@@ -125,21 +127,48 @@ public class Payment extends JFrame {
                 int randomNum = rand.nextInt((99999-10000)+1) + 10000;
 
                 //validation for Member ID text field.
-                String memberID = txtMemberID.getText();
-                try{
-                    Integer.parseInt(memberID);
-                    int input = JOptionPane.showConfirmDialog(null,"Confirm payment of RM" + fee + " from MemberID: " + memberID + "?", "Confirm payment", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
-                    if (input == JOptionPane.OK_OPTION) {
-                        try {
-                            PrintWriter outputFile = new PrintWriter(new FileWriter("payment", true));
-                            outputFile.append(randomNum + ":" + date.toString() + ":" + txtMemberID.getText() + ":" + fee + ":" + Main.user.toString() + "\n");
-                            JOptionPane.showMessageDialog(null, "Payment of RM" + fee + " Paid by MemberID " + memberID);
+                String inputID = txtMemberID.getText();
+                try{ //validates that a string of integers is entered
+                    Integer.parseInt(inputID);
 
-                            outputFile.close();
+                    try { //catches if member exists
+                        File file = new File("members.txt");
+                        Scanner inputFile = new Scanner(file);
+                        boolean found = false;
 
-                        } catch (Exception fileExcp) {
-                            JOptionPane.showMessageDialog(null, "Error: " + fileExcp.getMessage());
+                        while (inputFile.hasNext()) { //loops through
+                            String memberOri = inputFile.nextLine();
+                            String memberIndex[] = memberOri.split(":");
+                            String indexMemberID = memberIndex[0];
+
+                            if (indexMemberID.equals(inputID)) {
+                                found = true;
+                                break;
+                            }else {
+                                txtMemberID.setText(" ");
+                                cbPayType.setSelectedItem(" ");
+                                cbMemberType.setSelectedItem(" ");
+                                found = false;
+                            }
                         }
+                        if (found == true){
+                            int input = JOptionPane.showConfirmDialog(null,"Confirm payment of RM" + fee + " from MemberID: " + inputID + "?", "Confirm payment", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+                            if (input == JOptionPane.OK_OPTION) {
+                                try {
+                                    PrintWriter outputFile = new PrintWriter(new FileWriter("payment", true));
+                                    JOptionPane.showMessageDialog(null, "Payment of RM" + fee + " Paid by MemberID " + inputID);
+
+                                    outputFile.close();
+
+                                } catch (Exception fileExcp) {
+                                    JOptionPane.showMessageDialog(null, "append failed, Error: " + fileExcp.getMessage());
+                                }
+                            }
+
+                        }else {
+                            JOptionPane.showMessageDialog(null, "Member does not exist.");
+                        }
+                    } catch (Exception fileExcp) {
                     }
 
                 } catch (NumberFormatException nfe) {

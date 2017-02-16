@@ -73,7 +73,7 @@ public class Modify extends Frame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Integer.parseInt(txtSearch.getText());
-                    try {
+                    try { //Catches if member exists
                         File file = new File("members.txt");
                         Scanner inputFile = new Scanner(file);
                         boolean found = false;
