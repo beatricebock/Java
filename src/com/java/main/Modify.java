@@ -93,15 +93,17 @@ public class Modify extends Frame {
                                 inputFile.close();
                                 found = true;
                                 break;
-                            }else {
-                                lblMemberID.setText(" ");
-                                txtName.setText(" ");
-                                cbMemberType.setSelectedItem(" ");
+                            } else {
                                 found = false;
                             }
                         }
                         if (found != true){
                             JOptionPane.showMessageDialog(null,"Member does not exist.");
+
+                                lblMemberID.setText(" ");
+                                txtName.setText(" ");
+                                cbMemberType.setSelectedItem(" ");
+                                inputFile.close();
                         }
                     } catch (Exception fileExcp) {
                         JOptionPane.showMessageDialog(null, "Error: " + fileExcp.getMessage());
@@ -112,6 +114,8 @@ public class Modify extends Frame {
             }
         });
 
+
+        File finalTemp = temp;
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -159,12 +163,16 @@ public class Modify extends Frame {
                 }
 
                 File oriFile = new File(oriFileName);
-                oriFile.delete();
+                if (!oriFile.delete()){
+                 JOptionPane.showMessageDialog(null, "Delete unsuccessful");
+                }
 
                 File overwrite = new File(tempFileName);
-                overwrite.renameTo(oriFile);
-
-                JOptionPane.showMessageDialog(null,"Overwrite successful");
+                if (!overwrite.renameTo(oriFile)){
+                    JOptionPane.showMessageDialog(null,"Overwrite Unsuccessful");
+                }else {
+                    JOptionPane.showMessageDialog(null,"Overwrite successful");
+                }
 
         }
 

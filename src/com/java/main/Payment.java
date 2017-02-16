@@ -104,6 +104,7 @@ public class Payment extends JFrame {
                         JOptionPane.showMessageDialog(null,"Member does not exist.");
                         txtMemberID.setText(" ");
                         cbPayType.setSelectedItem(" ");
+                        inputFile.close();
                     }
                 } catch (Exception member){
                     JOptionPane.showMessageDialog(null,"File does not exist");

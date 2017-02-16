@@ -84,7 +84,7 @@ public class Register extends JFrame {
                  JOptionPane.showMessageDialog(null, "New member added.\nName: " + txtName.getText() + "\nMember ID: " + randomNum + "\nMembership Type: " + member);
 
                  try {
-                     PrintWriter outputFile = new PrintWriter(new FileWriter("members", true));
+                     PrintWriter outputFile = new PrintWriter(new FileWriter("members.txt", true));
                      outputFile.append(randomNum + ":" + txtName.getText() + ":" + member + "\n");
                      outputFile.close();
 
