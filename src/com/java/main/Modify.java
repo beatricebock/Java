@@ -42,6 +42,13 @@ public class Modify extends Frame {
         Button btnMenu = new Button("<< Main Menu");
         Button btnSave = new Button("Save Changes");
 
+        File temp = null;
+        try {
+            temp = File.createTempFile("temp",".txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         inputPanel.add(txtSearch);
         inputPanel.add(btnSearch);
         inputPanel.add(new Label("Member ID: "));
@@ -109,11 +116,11 @@ public class Modify extends Frame {
             }
         });
 
+        File finalTemp = temp;
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    File temp = File.createTempFile("temp",".txt");
                     File ori = new File("members.txt");
                     Scanner oriFile = new Scanner(ori);
 
@@ -146,10 +153,17 @@ public class Modify extends Frame {
                                 JOptionPane.showMessageDialog(null,"Error: " + writeExcp.getMessage());
                             }
                         }
+
                     }
-                    ori.delete();
+                    oriFile.close();
+                    if (ori.delete()){
+                        JOptionPane.showMessageDialog(null, "Original file deleted");
+                    }else{
+                        JOptionPane.showMessageDialog(null,"File not deleted, operation failed");
+                    }
+
                     File overwrite = new File("members.txt");
-                    boolean success = temp.renameTo(overwrite);
+                    boolean success = finalTemp.renameTo(overwrite);
                     if(!success){
                         JOptionPane.showMessageDialog(null,"Data successfully overwritten.");
                     }
