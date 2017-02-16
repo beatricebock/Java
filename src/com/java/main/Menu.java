@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 /**
  * Class for Menu frame
@@ -32,11 +33,11 @@ public class Menu extends JFrame {
         Button btnNewMember = new Button("Add New Member");
         Button btnModify = new Button("Modify Existing Member");
         Button btnPayment = new Button("Payment");
-        Button btnExit = new Button("Exit System");
+        Button btnLogout = new Button("Logout");
         buttonPanel.add(btnNewMember);
         buttonPanel.add(btnModify);
         buttonPanel.add(btnPayment);
-        buttonPanel.add(btnExit);
+        buttonPanel.add(btnLogout);
 
 
         //Add panels to frame
@@ -64,17 +65,26 @@ public class Menu extends JFrame {
         btnModify.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Modify mod = new Modify();
+                try {
+                    Modify mod = new Modify();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 dispose();
             }
         });
 
-        btnExit.addActionListener(new ActionListener() {
+        btnLogout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int input = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Confirm Logout", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
                 if (input == JOptionPane.OK_OPTION) {
                     dispose();
+                    try {
+                        Login login = new Login();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             }
         });
@@ -85,7 +95,7 @@ public class Menu extends JFrame {
         addWindowListener(new WindowAdapter() {
               @Override
               public void windowClosing(WindowEvent e) {
-                  int input = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Confirm Logout", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+                  int input = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Confirm Exit", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
                   if (input == JOptionPane.OK_OPTION) {
                       dispose();
                   }

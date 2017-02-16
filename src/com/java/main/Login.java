@@ -74,7 +74,6 @@ public class Login extends JFrame {
                             dispose();
                             inputFile.close();
                             success = true;
-                            Main.user = txtUser.getText().toString();
 
                             break;
                         }else{
@@ -94,7 +93,7 @@ public class Login extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                int input = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Confirm Logout", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+                int input = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Confirm Exit", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
                 if (input == JOptionPane.OK_OPTION) {
                     dispose();
                 }

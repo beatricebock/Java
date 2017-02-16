@@ -19,7 +19,7 @@ public class Modify extends Frame {
 
     String newMemberType; //For use in saving modifications from changed combobox selected Item
 
-    public Modify() {
+    public Modify() throws IOException {
 
         //Frame Setup
         setSize(500, 300);
@@ -42,12 +42,7 @@ public class Modify extends Frame {
         Button btnMenu = new Button("<< Main Menu");
         Button btnSave = new Button("Save Changes");
 
-        File temp = null;
-        try {
-            temp = File.createTempFile("temp",".txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        final File temp = File.createTempFile("temp",".txt");
 
         inputPanel.add(txtSearch);
         inputPanel.add(btnSearch);
@@ -156,6 +151,8 @@ public class Modify extends Frame {
 
                     }
                     oriFile.close();
+/*
+                    System.gc();
                     if (ori.delete()){
                         JOptionPane.showMessageDialog(null, "Original file deleted");
                     }else{
@@ -163,11 +160,11 @@ public class Modify extends Frame {
                     }
 
                     File overwrite = new File("members.txt");
-                    boolean success = finalTemp.renameTo(overwrite);
+                    boolean success = temp.renameTo(overwrite);
                     if(!success){
-                        JOptionPane.showMessageDialog(null,"Data successfully overwritten.");
+                        JOptionPane.showMessageDialog(null,"Error during data overwrite.");
                     }
-                    oriFile.close();
+*/
 
                 } catch (IOException e1) {
                     e1.printStackTrace();
