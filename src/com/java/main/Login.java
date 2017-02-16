@@ -55,6 +55,7 @@ public class Login extends JFrame {
                 try {
                     File file = new File("login");
                     Scanner inputFile = new Scanner(file);
+                    boolean success = false;
 
                     while(inputFile.hasNext())
                     {
@@ -72,9 +73,16 @@ public class Login extends JFrame {
                             menu.setVisible(true);
                             dispose();
                             inputFile.close();
+                            success = true;
+                            Main.user = txtUser.getText().toString();
+
+                            break;
                         }else{
-                            JOptionPane.showMessageDialog(null, "Username or password incorrect. Try again.");
+                            success = false;
                         }
+                    }
+                    if (success != true){
+                        JOptionPane.showMessageDialog(null, "Username or password incorrect. Try again.");
                     }
 
                 }catch (Exception fileExcp) {
@@ -94,7 +102,6 @@ public class Login extends JFrame {
         });
 
         setVisible(true);
-
     }
 
 

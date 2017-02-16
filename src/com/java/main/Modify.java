@@ -1,6 +1,7 @@
 package com.java.main;
 
 import javafx.scene.control.Labeled;
+import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,9 @@ import java.util.Scanner;
  * Created by User on 11/2/2017.
  */
 public class Modify extends Frame {
+
+    String newMemberType; //For use in saving modifications from changed combobox selected Item
+
     public Modify() {
 
         //Frame Setup
@@ -53,33 +57,49 @@ public class Modify extends Frame {
         add(inputPanel, "Center");
         add(buttonPanel, "South");
 
+        cbMemberType.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JComboBox cbMemberType = (JComboBox) e.getSource();
+                String selectedMember = (String) cbMemberType.getSelectedItem();
+                newMemberType = selectedMember;
+            }
+        });
 
         btnSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     try {
-                        File file = new File("members");
+                        File file = new File("members.txt");
                         Scanner inputFile = new Scanner(file);
+                        boolean found = false;
 
-                            while (inputFile.hasNext()) {
-                                String memberOri = inputFile.nextLine();
-                                String memberIndex[] = memberOri.split(":");
-                                String memberID = memberIndex[0];
-                                String memberName = memberIndex[1];
-                                String memberType = memberIndex[2];
+                        while (inputFile.hasNext()) {
+                            String memberOri = inputFile.nextLine();
+                            String memberIndex[] = memberOri.split(":");
+                            String memberID = memberIndex[0];
+                            String memberName = memberIndex[1];
+                            String memberType = memberIndex[2];
 
-                                String inputID = txtSearch.getText();
-
-                                if (memberID.equals(inputID)) {
-                                    lblMemberID.setText(memberID);
-                                    txtName.setText(memberName);
-                                    cbMemberType.setSelectedItem(memberType);
-                                    inputFile.close();
-                                    break;
-                                }
+                            String inputID = txtSearch.getText();
+                            if (memberID.equals(inputID)) {
+                                lblMemberID.setText(memberID);
+                                txtName.setText(memberName);
+                                cbMemberType.setSelectedItem(memberType);
+                                inputFile.close();
+                                found = true;
+                                break;
+                            }else {
+                                lblMemberID.setText(" ");
+                                txtName.setText(" ");
+                                cbMemberType.setSelectedItem(" ");
+                                found = false;
                             }
-
+                        }
+                        if (found != true){
+                            JOptionPane.showMessageDialog(null,"Member does not exist.");
+                        }
                     } catch (Exception fileExcp) {
                         JOptionPane.showMessageDialog(null, "Error: " + fileExcp.getMessage());
                     }
@@ -93,33 +113,50 @@ public class Modify extends Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    try {
-                        File file = new File("members");
-                        Scanner inputFile = new Scanner(file);
+                    File temp = File.createTempFile("temp",".txt");
+                    File ori = new File("members.txt");
+                    Scanner oriFile = new Scanner(ori);
 
-                        while (inputFile.hasNext()) {
-                            String memberOri = inputFile.nextLine();
-                            String memberIndex[] = memberOri.split(":");
-                            String memberID = memberIndex[0];
-                            String memberName = memberIndex[1];
-                            String memberType = memberIndex[2];
+                    while (oriFile.hasNext()) {
+                        String memberOri = oriFile.nextLine();
+                        String memberIndex[] = memberOri.split(":");
+                        String memberID = memberIndex[0];
+                        String memberName = memberIndex[1];
+                        String memberType = memberIndex[2];
 
-                            String inputID = txtSearch.getText();
+                        String inputID = txtSearch.getText();
+                        if (memberID.equals(inputID)) {
+                            String copyMemberID = lblMemberID.getText();
+                            String newName = txtName.getText();
 
-                            if (memberID.equals(inputID)) {
-                                lblMemberID.setText(memberID);
-                                txtName.setText(memberName);
-                                cbMemberType.setSelectedItem(memberType);
-                                inputFile.close();
-                                break;
+                            try {
+                                PrintWriter outputFile = new PrintWriter(new FileWriter("temp.txt", true));
+                                outputFile.append(copyMemberID + ":" + newName + ":" + newMemberType + "\n");
+                                JOptionPane.showMessageDialog(null,"Edited information for member ID:" + copyMemberID + "\nName: " + newName + "\nMembership Type: " + newMemberType);
+
+                            }catch (Exception writeExcp) {
+                                JOptionPane.showMessageDialog(null,"Error: " + writeExcp.getMessage());
+                            }
+
+                        }else {
+                            try {
+                                PrintWriter outputFile = new PrintWriter(new FileWriter("temp.txt", true));
+                                outputFile.append(memberID + ":" + memberName + ":" + memberType + "\n");
+                            }catch (Exception writeExcp) {
+                                JOptionPane.showMessageDialog(null,"Error: " + writeExcp.getMessage());
                             }
                         }
-
-                    } catch (Exception fileExcp) {
-                        JOptionPane.showMessageDialog(null, "Error: " + fileExcp.getMessage());
                     }
-                }catch (NumberFormatException nfe) {
-                    JOptionPane.showMessageDialog(null, "Invalid input. Please enter a memberID that consists of only integers.");
+                    ori.delete();
+                    File overwrite = new File("members.txt");
+                    boolean success = temp.renameTo(overwrite);
+                    if(!success){
+                        JOptionPane.showMessageDialog(null,"Data successfully overwritten.");
+                    }
+                    oriFile.close();
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
                 }
             }
         });
@@ -147,4 +184,5 @@ public class Modify extends Frame {
         setVisible(true);
 
     }
+
 }

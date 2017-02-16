@@ -91,17 +91,19 @@ public class Payment extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 JComboBox cbPayType = (JComboBox) e.getSource();
                 String payTypes = (String) cbPayType.getSelectedItem();
-
-                FeeLogic feeLogic = new FeeLogic();
-                switch(payTypes){
-                    case "Registration":
-                        fee = feeLogic.FeeLogic(membership, 500, 300, 180);
-                        break;
-                    case "Monthly":
-                        fee = feeLogic.FeeLogic(membership,120,100,75);
-                        break;
+                if(membership != null) {
+                    FeeLogic feeLogic = new FeeLogic();
+                    switch (payTypes) {
+                        case "Registration":
+                            fee = feeLogic.FeeLogic(membership, 500, 300, 180);
+                            break;
+                        case "Monthly":
+                            fee = feeLogic.FeeLogic(membership, 120, 100, 75);
+                            break;
+                    }
+                }else {
+                    JOptionPane.showMessageDialog(null, "Select a Membership type first!");
                 }
-
             }
         });
 
@@ -126,16 +128,18 @@ public class Payment extends JFrame {
                 String memberID = txtMemberID.getText();
                 try{
                     Integer.parseInt(memberID);
-                    JOptionPane.showConfirmDialog(null,"Confirm payment of RM" + fee + " from MemberID: " + memberID + "?");
-                    try {
-                        PrintWriter outputFile = new PrintWriter(new FileWriter("payment", true));
-                        outputFile.append(randomNum + ":" + date.toString() + ":" + txtMemberID.getText() + ":" + fee + "\n");
-                        JOptionPane.showMessageDialog(null,"Payment of RM" + fee + " Paid by MemberID " + memberID);
+                    int input = JOptionPane.showConfirmDialog(null,"Confirm payment of RM" + fee + " from MemberID: " + memberID + "?", "Confirm payment", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+                    if (input == JOptionPane.OK_OPTION) {
+                        try {
+                            PrintWriter outputFile = new PrintWriter(new FileWriter("payment", true));
+                            outputFile.append(randomNum + ":" + date.toString() + ":" + txtMemberID.getText() + ":" + fee + ":" + Main.user.toString() + "\n");
+                            JOptionPane.showMessageDialog(null, "Payment of RM" + fee + " Paid by MemberID " + memberID);
 
-                        outputFile.close();
+                            outputFile.close();
 
-                    }catch (Exception fileExcp) {
-                        JOptionPane.showMessageDialog(null,"Error: " + fileExcp.getMessage());
+                        } catch (Exception fileExcp) {
+                            JOptionPane.showMessageDialog(null, "Error: " + fileExcp.getMessage());
+                        }
                     }
 
                 } catch (NumberFormatException nfe) {
@@ -169,12 +173,4 @@ public class Payment extends JFrame {
     }
 }
 
-//Validation for Months textfield
-//try
-//{
-//months = Integer.parseInt(txtMonth.getText());
-//}
-//catch (IllegalArgumentException ec){
-//JOptionPane.showMessageDialog(null,"Enter integers only");
-//}
 
