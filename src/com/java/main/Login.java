@@ -52,13 +52,8 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                //dispose();
-                //Menu menu = new Menu();
-                //login credential file
                 try {
-                    String login;
-                    login = "login";
-                    File file = new File(login);
+                    File file = new File("login");
                     Scanner inputFile = new Scanner(file);
 
                     while(inputFile.hasNext())
@@ -68,16 +63,15 @@ public class Login extends JFrame {
                         String[] userindex = loginCred.split(":");
                         String username = userindex[0];
                         String password = userindex[1];
-                        String inputUser = txtUser.getText().toString();
-                        String inputPass = txtPwd.getText().toString();
-                        JOptionPane.showMessageDialog(null, txtUser.getText() + txtPwd.getText() + userindex[0] + userindex[1]);
+                        String inputUser = txtUser.getText();
+                        String inputPass = txtPwd.getText();
 
                         if (username.equals(inputUser)&& password.equals(inputPass)){
                             JOptionPane.showMessageDialog(null,"Login successful. Welcome, "+ userindex[0]);
-                            inputFile.close();
                             Menu menu = new Menu();
                             menu.setVisible(true);
                             dispose();
+                            inputFile.close();
                         }else{
                             JOptionPane.showMessageDialog(null, "Username or password incorrect. Try again.");
                         }

@@ -3,12 +3,13 @@ package com.java.main;
 import javafx.scene.control.Labeled;
 
 import javax.swing.*;
-import javax.xml.soap.Text;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.*;
+import java.util.Scanner;
 
 /**
  * Created by User on 11/2/2017.
@@ -23,10 +24,8 @@ public class Modify extends Frame {
         setTitle("Modify Users");
 
         //Panels
-        Panel inputPanel = new Panel();
-        inputPanel.setLayout(new GridLayout(0,2, 0, 50));
-        Panel buttonPanel = new Panel();
-        buttonPanel.setLayout(new FlowLayout());
+        Panel inputPanel = new Panel(new GridLayout(0,2, 0, 50));
+        Panel buttonPanel = new Panel(new FlowLayout());
 
         //Elements
         Label lblMemberID = new Label();
@@ -37,9 +36,7 @@ public class Modify extends Frame {
 
         Button btnSearch = new Button("Search");
         Button btnMenu = new Button("<< Main Menu");
-        Button btnPrev = new Button("< Prev Record");
         Button btnSave = new Button("Save Changes");
-        Button btnNext = new Button("Next Record >");
 
         inputPanel.add(txtSearch);
         inputPanel.add(btnSearch);
@@ -51,14 +48,81 @@ public class Modify extends Frame {
         inputPanel.add(cbMemberType);
 
         buttonPanel.add(btnMenu);
-        buttonPanel.add(btnPrev);
         buttonPanel.add(btnSave);
-        buttonPanel.add(btnNext);
 
         add(inputPanel, "Center");
         add(buttonPanel, "South");
 
 
+        btnSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    try {
+                        File file = new File("members");
+                        Scanner inputFile = new Scanner(file);
+
+                            while (inputFile.hasNext()) {
+                                String memberOri = inputFile.nextLine();
+                                String memberIndex[] = memberOri.split(":");
+                                String memberID = memberIndex[0];
+                                String memberName = memberIndex[1];
+                                String memberType = memberIndex[2];
+
+                                String inputID = txtSearch.getText();
+
+                                if (memberID.equals(inputID)) {
+                                    lblMemberID.setText(memberID);
+                                    txtName.setText(memberName);
+                                    cbMemberType.setSelectedItem(memberType);
+                                    inputFile.close();
+                                    break;
+                                }
+                            }
+
+                    } catch (Exception fileExcp) {
+                        JOptionPane.showMessageDialog(null, "Error: " + fileExcp.getMessage());
+                    }
+                }catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Invalid input. Please enter a memberID that consists of only integers.");
+                }
+            }
+        });
+
+        btnSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    try {
+                        File file = new File("members");
+                        Scanner inputFile = new Scanner(file);
+
+                        while (inputFile.hasNext()) {
+                            String memberOri = inputFile.nextLine();
+                            String memberIndex[] = memberOri.split(":");
+                            String memberID = memberIndex[0];
+                            String memberName = memberIndex[1];
+                            String memberType = memberIndex[2];
+
+                            String inputID = txtSearch.getText();
+
+                            if (memberID.equals(inputID)) {
+                                lblMemberID.setText(memberID);
+                                txtName.setText(memberName);
+                                cbMemberType.setSelectedItem(memberType);
+                                inputFile.close();
+                                break;
+                            }
+                        }
+
+                    } catch (Exception fileExcp) {
+                        JOptionPane.showMessageDialog(null, "Error: " + fileExcp.getMessage());
+                    }
+                }catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "Invalid input. Please enter a memberID that consists of only integers.");
+                }
+            }
+        });
 
         btnMenu.addActionListener(new ActionListener() {
             @Override
