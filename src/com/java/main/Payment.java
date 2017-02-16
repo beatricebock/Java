@@ -156,6 +156,7 @@ public class Payment extends JFrame {
                             if (input == JOptionPane.OK_OPTION) {
                                 try {
                                     PrintWriter outputFile = new PrintWriter(new FileWriter("payment", true));
+                                    outputFile.append(randomNum + ":" + date.toString() + ":" + inputID + ":" + fee + ":" + Main.user + "\n");
                                     JOptionPane.showMessageDialog(null, "Payment of RM" + fee + " Paid by MemberID " + inputID);
 
                                     outputFile.close();
@@ -169,6 +170,7 @@ public class Payment extends JFrame {
                             JOptionPane.showMessageDialog(null, "Member does not exist.");
                         }
                     } catch (Exception fileExcp) {
+                        JOptionPane.showMessageDialog(null, "Error: " + fileExcp.getMessage());
                     }
 
                 } catch (NumberFormatException nfe) {
