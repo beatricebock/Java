@@ -1,0 +1,3 @@
+65095:testuser1:Deluxe
+81044:testuser2:Non-Deluxe
+21042:Nona:Non-Deluxe
