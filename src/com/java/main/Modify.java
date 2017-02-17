@@ -18,6 +18,12 @@ import java.util.Scanner;
 public class Modify extends Frame {
 
     String newMemberType; //For use in saving modifications from changed combobox selected Item
+    //Elements
+    Label lblMemberID = new Label();
+    TextField txtSearch = new TextField("Type member ID to search");
+    TextField txtName = new TextField();
+    String memberTypes [] = {"Deluxe", "Non-Deluxe", "Week-Day"};
+    JComboBox cbMemberType = new JComboBox(memberTypes);
 
     public Modify() throws IOException {
 
@@ -31,12 +37,6 @@ public class Modify extends Frame {
         Panel inputPanel = new Panel(new GridLayout(0,2, 0, 50));
         Panel buttonPanel = new Panel(new FlowLayout());
 
-        //Elements
-        Label lblMemberID = new Label();
-        TextField txtSearch = new TextField("Type member ID to search");
-        TextField txtName = new TextField();
-        String memberTypes [] = {"Deluxe", "Non-Deluxe", "Week-Day"};
-        JComboBox cbMemberType = new JComboBox(memberTypes);
 
         Button btnSearch = new Button("Search");
         Button btnMenu = new Button("<< Main Menu");
@@ -71,51 +71,9 @@ public class Modify extends Frame {
         btnSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-
-                    Integer.parseInt(txtSearch.getText());
-                    try { //Catches if member exists
-
-                        File file = new File("members.txt");
-                        Scanner inputFile = new Scanner(file);
-                        boolean found = false;
-
-                        while (inputFile.hasNext()) {
-                            String memberOri = inputFile.nextLine();
-                            String memberIndex[] = memberOri.split(":");
-                            String memberID = memberIndex[0];
-                            String memberName = memberIndex[1];
-                            String memberType = memberIndex[2];
-
-                            String inputID = txtSearch.getText();
-                            if (memberID.equals(inputID)) {
-                                lblMemberID.setText(memberID);
-                                txtName.setText(memberName);
-                                cbMemberType.setSelectedItem(memberType);
-                                inputFile.close();
-                                found = true;
-                                break;
-                            } else {
-                                found = false;
-                            }
-                        }
-                        if (found != true){
-                            JOptionPane.showMessageDialog(null,"Member does not exist.");
-
-                                lblMemberID.setText(" ");
-                                txtName.setText(" ");
-                                cbMemberType.setSelectedItem(" ");
-                                inputFile.close();
-                        }
-                    } catch (Exception fileExcp) {
-                        JOptionPane.showMessageDialog(null, "Error: " + fileExcp.getMessage());
-                    }
-                }catch (NumberFormatException nfe) {
-                    JOptionPane.showMessageDialog(null, "Invalid input. Please enter a memberID that consists of only integers.");
-                }
+                search();
             }
         });
-
 
         File finalTemp = temp;
         btnSave.addActionListener(new ActionListener() {
@@ -166,7 +124,7 @@ public class Modify extends Frame {
 
                 File oriFile = new File(oriFileName);
                 if (!oriFile.delete()){
-                 JOptionPane.showMessageDialog(null, "Delete unsuccessful");
+                    JOptionPane.showMessageDialog(null, "Delete unsuccessful");
                 }
 
                 File overwrite = new File(tempFileName);
@@ -202,6 +160,51 @@ public class Modify extends Frame {
 
         setVisible(true);
 
+    }
+    public void search()
+    {
+        try {
+
+            Integer.parseInt(txtSearch.getText());
+            try { //Catches if member exists
+
+                File file = new File("members.txt");
+                Scanner inputFile = new Scanner(file);
+                boolean found = false;
+
+                while (inputFile.hasNext()) {
+                    String memberOri = inputFile.nextLine();
+                    String memberIndex[] = memberOri.split(":");
+                    String memberID = memberIndex[0];
+                    String memberName = memberIndex[1];
+                    String memberType = memberIndex[2];
+
+                    String inputID = txtSearch.getText();
+                    if (memberID.equals(inputID)) {
+                        lblMemberID.setText(memberID);
+                        txtName.setText(memberName);
+                        cbMemberType.setSelectedItem(memberType);
+                        inputFile.close();
+                        found = true;
+                        break;
+                    } else {
+                        found = false;
+                    }
+                }
+                if (found != true){
+                    JOptionPane.showMessageDialog(null,"Member does not exist.");
+
+                    lblMemberID.setText(" ");
+                    txtName.setText(" ");
+                    cbMemberType.setSelectedItem(" ");
+                    inputFile.close();
+                }
+            } catch (Exception fileExcp) {
+                JOptionPane.showMessageDialog(null, "Error: " + fileExcp.getMessage());
+            }
+        }catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(null, "Invalid input. Please enter a memberID that consists of only integers.");
+        }
     }
 
 }

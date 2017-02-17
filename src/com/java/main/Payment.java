@@ -153,7 +153,7 @@ public class Payment extends JFrame {
                             }else {
                                 txtMemberID.setText(" ");
                                 cbPayType.setSelectedItem(" ");
-                               // cbMemberType.setSelectedItem(" ");
+                                // cbMemberType.setSelectedItem(" ");
                                 found = false;
                             }
                         }

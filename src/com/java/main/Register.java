@@ -75,24 +75,24 @@ public class Register extends JFrame {
         //actionListener for Confirm button
         btnConfirm.addActionListener(new ActionListener()
         {
-             @Override
-             public void actionPerformed(ActionEvent e) {
-                 Random rand = new Random();
-                 int randomNum = rand.nextInt((99999-10000)+1) + 10000;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Random rand = new Random();
+                int randomNum = rand.nextInt((99999-10000)+1) + 10000;
 
-                 JOptionPane.showConfirmDialog(null, "Confirm entered information and enter information into database?");
-                 JOptionPane.showMessageDialog(null, "New member added.\nName: " + txtName.getText() + "\nMember ID: " + randomNum + "\nMembership Type: " + member);
+                JOptionPane.showConfirmDialog(null, "Confirm entered information and enter information into database?");
+                JOptionPane.showMessageDialog(null, "New member added.\nName: " + txtName.getText() + "\nMember ID: " + randomNum + "\nMembership Type: " + member);
 
-                 try {
-                     PrintWriter outputFile = new PrintWriter(new FileWriter("members.txt", true));
-                     outputFile.append(randomNum + ":" + txtName.getText() + ":" + member + "\n");
-                     outputFile.close();
+                try {
+                    PrintWriter outputFile = new PrintWriter(new FileWriter("members.txt", true));
+                    outputFile.append(randomNum + ":" + txtName.getText() + ":" + member + "\n");
+                    outputFile.close();
 
-                 }catch (Exception fileExcp) {
-                     JOptionPane.showMessageDialog(null,"Error: " + fileExcp.getMessage());
-                 }
-             }
-         });
+                }catch (Exception fileExcp) {
+                    JOptionPane.showMessageDialog(null,"Error: " + fileExcp.getMessage());
+                }
+            }
+        });
 
         //actionListener for Menu button
         btnMenu.addActionListener(new ActionListener() {

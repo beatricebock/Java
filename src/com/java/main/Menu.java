@@ -93,13 +93,13 @@ public class Menu extends JFrame {
 
         //Window Listener for "Close Window"
         addWindowListener(new WindowAdapter() {
-              @Override
-              public void windowClosing(WindowEvent e) {
-                  int input = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Confirm Exit", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
-                  if (input == JOptionPane.OK_OPTION) {
-                      dispose();
-                  }
-              }
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int input = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Confirm Exit", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+                if (input == JOptionPane.OK_OPTION) {
+                    dispose();
+                }
+            }
         });
 
         setVisible(true);
