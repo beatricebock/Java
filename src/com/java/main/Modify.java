@@ -164,7 +164,6 @@ class Modify extends JFrame {
     private void search()
     {
         try {
-
             Integer.parseInt(txtSearch.getText());
             try { //Catches if member exists
 

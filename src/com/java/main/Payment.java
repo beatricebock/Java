@@ -17,7 +17,7 @@ import java.util.Scanner;
  * GUI and methods for Payment module
  */
  class Payment extends JFrame {
-    String membership;
+    String membership = "Monthly";
     int fee;
 
     public Payment (){
@@ -68,6 +68,7 @@ import java.util.Scanner;
         cbPayType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 try {
                     File file = new File("members.txt");
                     Scanner inputFile = new Scanner(file);
@@ -96,20 +97,19 @@ import java.util.Scanner;
                             inputFile.close();
                             found = true;
                             break;
-                        }else {
+                        } else {
                             found = false;
                         }
                     }
-                    if (found != true){
-                        JOptionPane.showMessageDialog(null,"Member does not exist.");
+                    if (found != true) {
+                        JOptionPane.showMessageDialog(null, "Member does not exist.");
                         txtMemberID.setText(" ");
                         cbPayType.setSelectedItem(" ");
                         inputFile.close();
                     }
-                } catch (Exception member){
-                    JOptionPane.showMessageDialog(null,"File does not exist");
+                } catch (Exception member) {
+                    JOptionPane.showMessageDialog(null, "File does not exist");
                 }
-
             }
         });
 
@@ -161,7 +161,7 @@ import java.util.Scanner;
                             int input = JOptionPane.showConfirmDialog(null,"Confirm payment of RM" + fee + " from MemberID: " + inputID + "?", "Confirm payment", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
                             if (input == JOptionPane.OK_OPTION) {
                                 try {
-                                    PrintWriter outputFile = new PrintWriter(new FileWriter("payment", true));
+                                    PrintWriter outputFile = new PrintWriter(new FileWriter("payment.txt", true));
                                     outputFile.append(randomNum + ":" + date.toString() + ":" + inputID + ":" + fee + ":" + Main.user + "\n");
                                     JOptionPane.showMessageDialog(null, "Payment of RM" + fee + " Paid by MemberID " + inputID);
 

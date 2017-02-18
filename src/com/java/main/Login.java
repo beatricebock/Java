@@ -54,7 +54,7 @@ public class Login extends JFrame {
             public void actionPerformed(ActionEvent e)
             {
                 try {
-                    File file = new File("login");
+                    File file = new File("login.txt");
                     Scanner inputFile = new Scanner(file);
                     boolean success = false;
 
