@@ -26,9 +26,10 @@ public class Login extends JFrame {
         setTitle("Login");
         setLayout(new BorderLayout());
 
-        TextField txtUser = new TextField(20);
-        TextField txtPwd = new TextField(20);
-        Button submitBtn = new Button("Login");
+        JTextField txtUser = new JTextField(15);
+        //TextField txtPwd = new TextField(20);
+        JPasswordField txtPwd = new JPasswordField(15);
+        JButton submitBtn = new JButton("Login");
 
         Panel inputPanel = new Panel(new GridLayout(2, 0));
         Panel usernamePanel = new Panel(new FlowLayout());
