@@ -17,7 +17,7 @@ public class Register extends JFrame {
 
     int months = 1; //Default month number
     int totalfees = 0; //Default fees
-    String member;
+    String member = "Deluxe";
 
     //Elements requiring global access
     TextField txtName = new TextField(20);
@@ -78,25 +78,30 @@ public class Register extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputName = txtName.getText();
-                noNull nonull = new noNull();
 
-                if (!nonull.noNull(inputName, "Name") && !nonull.noNull(member, "MemberShip Type")) {
-                    Random rand = new Random();
-                    int randomNum = rand.nextInt((99999 - 10000) + 1) + 10000;
+                try {
+                    if (!txtName.getText().trim().isEmpty()) {
+                        Random rand = new Random();
+                        int randomNum = rand.nextInt((99999 - 10000) + 1) + 10000;
 
-                    int option = JOptionPane.showConfirmDialog(null,"Confirm entered information and enter information into database?", "Confirm enter", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
-                    if (option == JOptionPane.OK_OPTION) {
-                        JOptionPane.showMessageDialog(null, "New member added.\nName: " + inputName + "\nMember ID: " + randomNum + "\nMembership Type: " + member);
+                        int option = JOptionPane.showConfirmDialog(null, "Confirm entered information and enter information into database?", "Confirm enter", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+                        if (option == JOptionPane.OK_OPTION) {
+                            JOptionPane.showMessageDialog(null, "New member added.\nName: " + inputName + "\nMember ID: " + randomNum + "\nMembership Type: " + member);
 
-                        try {
-                            PrintWriter outputFile = new PrintWriter(new FileWriter("members.txt", true));
-                            outputFile.append(randomNum + ":" + inputName + ":" + member + "\n");
-                            outputFile.close();
+                            try {
+                                PrintWriter outputFile = new PrintWriter(new FileWriter("members.txt", true));
+                                outputFile.append(randomNum + ":" + inputName + ":" + member + "\n");
+                                outputFile.close();
 
-                        } catch (Exception fileExcp) {
-                            JOptionPane.showMessageDialog(null, "Error: " + fileExcp.getMessage());
+                            } catch (Exception fileExcp) {
+                                JOptionPane.showMessageDialog(null, "Error: " + fileExcp.getMessage());
+                            }
                         }
+                    }else {
+                        JOptionPane.showMessageDialog(null,"Name cannot be empty");
                     }
+                }catch(Exception nullExcp){
+                    JOptionPane.showMessageDialog(null, "Please select a membership type");
                 }
             }
         });
@@ -116,7 +121,7 @@ public class Register extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 txtMonth.setText(" ");
                 txtName.setText(" ");
-                cbMemberType.setSelectedItem(null);
+                cbMemberType.setSelectedItem("Deluxe");
             }
         }));
 

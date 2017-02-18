@@ -9,10 +9,12 @@ import javax.swing.*;
 public class noNull {
 
     public boolean noNull(String i, String field){
-        if (i == null){
+
+        //if evaluated values are null, then noNull returns false
+        if (i == null || i == " "){
             JOptionPane.showMessageDialog(null, field + " value cannot be null. Enter a value and try again.");
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 }
