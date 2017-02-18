@@ -15,7 +15,7 @@ import java.util.Scanner;
 /**
  * Created by User on 11/2/2017.
  */
-public class Modify extends Frame {
+public class Modify extends JFrame {
 
     String newMemberType; //For use in saving modifications from changed combobox selected Item
     //Elements
@@ -161,7 +161,7 @@ public class Modify extends Frame {
         setVisible(true);
 
     }
-    public void search()
+    private void search()
     {
         try {
 

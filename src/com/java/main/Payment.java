@@ -87,10 +87,10 @@ public class Payment extends JFrame {
                             FeeLogic feeLogic = new FeeLogic();
                             switch (payTypes) {
                                 case "Registration":
-                                    fee = feeLogic.FeeLogic(membership, 500, 300, 180);
+                                    fee = feeLogic.feeLogic(membership, 500, 300, 180);
                                     break;
                                 case "Monthly":
-                                    fee = feeLogic.FeeLogic(membership, 120, 100, 75);
+                                    fee = feeLogic.feeLogic(membership, 120, 100, 75);
                                     break;
                             }
                             inputFile.close();
