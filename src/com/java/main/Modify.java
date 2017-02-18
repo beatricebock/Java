@@ -13,7 +13,7 @@ import java.io.*;
 import java.util.Scanner;
 
 /**
- * Created by User on 11/2/2017.
+ * Modify Module by Beatrice
  */
 class Modify extends JFrame {
 
@@ -84,58 +84,63 @@ class Modify extends JFrame {
 
                 BufferedReader br = null;
                 BufferedWriter bw = null;
+                if (!txtName.getText().trim().isEmpty()) {
+                    int i = JOptionPane.showConfirmDialog(null, "Confirm changing details?", "Confirmation", JOptionPane.OK_CANCEL_OPTION);
+                    if (i == JOptionPane.OK_OPTION) {
+                        try {
+                            br = new BufferedReader(new FileReader(oriFileName));
+                            bw = new BufferedWriter(new FileWriter(tempFileName));
 
-                try {
-                    br  = new BufferedReader(new FileReader(oriFileName));
-                    bw = new BufferedWriter(new FileWriter(tempFileName));
+                            String line;
+                            while ((line = br.readLine()) != null) {
+                                String memberIndex[] = line.split(":");
+                                String memberID = memberIndex[0];
+                                String memberName = memberIndex[1];
+                                String memberType = memberIndex[2];
+                                String inputID = txtSearch.getText();
 
-                    String line;
-                    while ((line = br.readLine()) != null ){
-                        String memberIndex[] = line.split(":");
-                        String memberID = memberIndex[0];
-                        String memberName = memberIndex[1];
-                        String memberType = memberIndex[2];
-                        String inputID = txtSearch.getText();
+                                if (memberID.equals(inputID)) {
+                                    line = line.replace(memberName, txtName.getText());
+                                    line = line.replace(memberType, cbMemberType.getSelectedItem().toString());
+                                }
+                                bw.write(line + "\n");
+                            }
+                        } catch (Exception e2) {
+                            return;
+                        } finally {
+                            try {
+                                if (br != null) {
+                                    br.close();
+                                }
+                            } catch (IOException e2) {
 
-                        if (memberID.equals(inputID)){
-                            line = line.replace(memberName, txtName.getText());
-                            line = line.replace(memberType, cbMemberType.getSelectedItem().toString());
+                            }
+                            try {
+                                if (bw != null) {
+                                    bw.close();
+                                }
+                            } catch (IOException e2) {
+
+                            }
                         }
-                        bw.write(line + "\n");
-                    }
-                } catch (Exception e2) {
-                    return;
-                }finally {
-                    try {
-                        if (br != null) {
-                            br.close();
+
+                        File oriFile = new File(oriFileName);
+                        if (!oriFile.delete()) {
+                            JOptionPane.showMessageDialog(null, "Delete unsuccessful");
                         }
-                    } catch(IOException e2){
 
-                    }
-                    try {
-                        if (bw != null) {
-                            bw.close();
+                        File overwrite = new File(tempFileName);
+
+                        if (!overwrite.renameTo(oriFile)) {
+                            JOptionPane.showMessageDialog(null, "Overwrite Unsuccessful");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Overwrite successful");
                         }
-                    }catch (IOException e2){
-
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Name field cannot be empty.");
                     }
-                }
-
-                File oriFile = new File(oriFileName);
-                if (!oriFile.delete()){
-                    JOptionPane.showMessageDialog(null, "Delete unsuccessful");
-                }
-
-                File overwrite = new File(tempFileName);
-
-                if (!overwrite.renameTo(oriFile)){
-                    JOptionPane.showMessageDialog(null,"Overwrite Unsuccessful");
-                }else {
-                    JOptionPane.showMessageDialog(null,"Overwrite successful");
                 }
             }
-
         });
 
         btnMenu.addActionListener(new ActionListener() {
@@ -195,7 +200,7 @@ class Modify extends JFrame {
 
                     lblMemberID.setText(" ");
                     txtName.setText(" ");
-                    cbMemberType.setSelectedItem(" ");
+                    cbMemberType.setSelectedItem("Deluxe");
                     inputFile.close();
                 }
             } catch (Exception fileExcp) {
