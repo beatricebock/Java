@@ -17,7 +17,7 @@ import java.util.Scanner;
  * GUI and methods for Payment module
  */
  class Payment extends JFrame {
-    String membership = "Monthly";
+    String membership;
     int fee;
 
     public Payment (){
@@ -38,7 +38,7 @@ import java.util.Scanner;
         TextField txtMemberID = new TextField();
 
         //Combo box for input
-        String payTypes[] = {"Monthly", "Registration"};
+        String payTypes[] = {" ", "Monthly", "Registration"};
         JComboBox cbPayType = new JComboBox(payTypes);
 
 
@@ -101,10 +101,10 @@ import java.util.Scanner;
                             found = false;
                         }
                     }
-                    if (found != true) {
+                    if (!found) {
                         JOptionPane.showMessageDialog(null, "Member does not exist.");
                         txtMemberID.setText(" ");
-                        cbPayType.setSelectedItem(" ");
+                        cbPayType.setSelectedItem("Monthly");
                         inputFile.close();
                     }
                 } catch (Exception member) {
@@ -128,61 +128,64 @@ import java.util.Scanner;
                 Date date = new Date();
 
                 Random rand = new Random();
-                int randomNum = rand.nextInt((99999-10000)+1) + 10000;
+                int randomNum = rand.nextInt((99999 - 10000) + 1) + 10000;
 
                 //validation for Member ID text field.
-                String inputID = txtMemberID.getText();
-                try{ //validates that a string of integers is entered
-                    Integer.parseInt(inputID);
 
-                    try { //catches if member exists
-                        File file = new File("members.txt");
-                        Scanner inputFile = new Scanner(file);
-                        boolean found = false;
+                if (fee != 0) {
+                    String inputID = txtMemberID.getText();
+                    try { //validates that a string of integers is entered
+                        Integer.parseInt(inputID);
 
-                        while (inputFile.hasNext()) { //loops through
-                            String memberOri = inputFile.nextLine();
-                            String memberIndex[] = memberOri.split(":");
-                            String indexMemberID = memberIndex[0];
-                            String indexMemberName = memberIndex[1];
-                            String indexMemberType = memberIndex[2];
+                        try { //catches if member exists
+                            File file = new File("members.txt");
+                            Scanner inputFile = new Scanner(file);
+                            boolean found = false;
 
-                            if (indexMemberID.equals(inputID)) {
-                                found = true;
-                                break;
-                            }else {
-                                txtMemberID.setText(" ");
-                                cbPayType.setSelectedItem(" ");
-                                // cbMemberType.setSelectedItem(" ");
-                                found = false;
-                            }
-                        }
-                        if (found == true){
-                            int input = JOptionPane.showConfirmDialog(null,"Confirm payment of RM" + fee + " from MemberID: " + inputID + "?", "Confirm payment", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
-                            if (input == JOptionPane.OK_OPTION) {
-                                try {
-                                    PrintWriter outputFile = new PrintWriter(new FileWriter("payment.txt", true));
-                                    outputFile.append(randomNum + ":" + date.toString() + ":" + inputID + ":" + fee + ":" + Main.user + "\n");
-                                    JOptionPane.showMessageDialog(null, "Payment of RM" + fee + " Paid by MemberID " + inputID);
+                            while (inputFile.hasNext()) { //loops through
+                                String memberOri = inputFile.nextLine();
+                                String memberIndex[] = memberOri.split(":");
+                                String indexMemberID = memberIndex[0];
+                                String indexMemberName = memberIndex[1];
+                                String indexMemberType = memberIndex[2];
 
-                                    outputFile.close();
-
-                                } catch (Exception fileExcp) {
-                                    JOptionPane.showMessageDialog(null, "append failed, Error: " + fileExcp.getMessage());
+                                if (indexMemberID.equals(inputID)) {
+                                    found = true;
+                                    break;
+                                } else {
+                                    found = false;
                                 }
                             }
+                            if (found) {
+                                int input = JOptionPane.showConfirmDialog(null, "Confirm payment of RM" + fee + " from MemberID: " + inputID + "?", "Confirm payment", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+                                if (input == JOptionPane.OK_OPTION) {
+                                    try {
+                                        PrintWriter outputFile = new PrintWriter(new FileWriter("payment.txt", true));
+                                        outputFile.append(randomNum + ":" + date.toString() + ":" + inputID + ":" + fee + ":" + Main.user + "\n");
+                                        JOptionPane.showMessageDialog(null, "Payment of RM" + fee + " Paid by MemberID " + inputID);
 
-                        }else {
-                            JOptionPane.showMessageDialog(null, "Member does not exist.");
+                                        outputFile.close();
+
+                                    } catch (Exception fileExcp) {
+                                        JOptionPane.showMessageDialog(null, "append failed, Error: " + fileExcp.getMessage());
+                                    }
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Member does not exist.");
+                                cbPayType.setSelectedItem("Monthly");
+                                txtMemberID.setText(" ");
+                            }
+                        } catch (Exception fileExcp) {
+                            JOptionPane.showMessageDialog(null, "Error: " + fileExcp.getMessage());
                         }
-                    } catch (Exception fileExcp) {
-                        JOptionPane.showMessageDialog(null, "Error: " + fileExcp.getMessage());
-                    }
 
-                } catch (NumberFormatException nfe) {
-                    JOptionPane.showMessageDialog(null, "Invalid input. Please enter a memberID that consists of only integers.");
+                    } catch (NumberFormatException nfe) {
+                        JOptionPane.showMessageDialog(null, "Invalid input. Please enter a memberID that consists of only integers.");
+                    }
+                }else {
+                    JOptionPane.showMessageDialog(null,"Please ensure a payment type has been selected.");
                 }
-            }
+        }
         });
 
         btnClear.addActionListener(new ActionListener() {
@@ -198,7 +201,7 @@ import java.util.Scanner;
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                int input = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Confirm Logout", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+                int input = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Confirm Exit", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
                 if (input == JOptionPane.OK_OPTION)
                 {
                     dispose();
