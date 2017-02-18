@@ -77,19 +77,26 @@ public class Register extends JFrame {
         {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Random rand = new Random();
-                int randomNum = rand.nextInt((99999-10000)+1) + 10000;
+                String inputName = txtName.getText();
+                noNull nonull = new noNull();
 
-                JOptionPane.showConfirmDialog(null, "Confirm entered information and enter information into database?");
-                JOptionPane.showMessageDialog(null, "New member added.\nName: " + txtName.getText() + "\nMember ID: " + randomNum + "\nMembership Type: " + member);
+                if (!nonull.noNull(inputName, "Name") && !nonull.noNull(member, "MemberShip Type")) {
+                    Random rand = new Random();
+                    int randomNum = rand.nextInt((99999 - 10000) + 1) + 10000;
 
-                try {
-                    PrintWriter outputFile = new PrintWriter(new FileWriter("members.txt", true));
-                    outputFile.append(randomNum + ":" + txtName.getText() + ":" + member + "\n");
-                    outputFile.close();
+                    int option = JOptionPane.showConfirmDialog(null,"Confirm entered information and enter information into database?", "Confirm enter", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+                    if (option == JOptionPane.OK_OPTION) {
+                        JOptionPane.showMessageDialog(null, "New member added.\nName: " + inputName + "\nMember ID: " + randomNum + "\nMembership Type: " + member);
 
-                }catch (Exception fileExcp) {
-                    JOptionPane.showMessageDialog(null,"Error: " + fileExcp.getMessage());
+                        try {
+                            PrintWriter outputFile = new PrintWriter(new FileWriter("members.txt", true));
+                            outputFile.append(randomNum + ":" + inputName + ":" + member + "\n");
+                            outputFile.close();
+
+                        } catch (Exception fileExcp) {
+                            JOptionPane.showMessageDialog(null, "Error: " + fileExcp.getMessage());
+                        }
+                    }
                 }
             }
         });
