@@ -3,7 +3,7 @@ package com.java.main;
 /**
  * Created by User on 9/2/2017.
  */
-public class FeeLogic {
+class FeeLogic {
     public int feeLogic(String memberType, int df, int nf, int wf){
         int fee = 0;
         switch (memberType){

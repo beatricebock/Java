@@ -16,7 +16,7 @@ import java.util.Scanner;
 /**
  * GUI and methods for Payment module
  */
-public class Payment extends JFrame {
+ class Payment extends JFrame {
     String membership;
     int fee;
 

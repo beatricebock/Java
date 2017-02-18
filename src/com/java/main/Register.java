@@ -13,7 +13,7 @@ import java.util.Scanner;
 /**
  * GUI for New Member registration
  */
-public class Register extends JFrame {
+ class Register extends JFrame {
 
     int months = 1; //Default month number
     int totalfees = 0; //Default fees
