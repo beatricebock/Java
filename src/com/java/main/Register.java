@@ -126,7 +126,10 @@ import java.util.Scanner;
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-
+            int input = JOptionPane.showConfirmDialog(null, "Confirm exit?", "Confirm Exit", JOptionPane.OK_CANCEL_OPTION);
+            if (input == JOptionPane.OK_OPTION) {
+                dispose();
+            }
             }
         });
 
