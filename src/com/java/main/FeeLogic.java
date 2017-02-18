@@ -1,7 +1,8 @@
 package com.java.main;
 
 /**
- * Created by User on 9/2/2017.
+ * Evaluates the fees according to member type. Receives fee
+ * amount as parameters.
  */
 class FeeLogic {
     public int feeLogic(String memberType, int df, int nf, int wf){

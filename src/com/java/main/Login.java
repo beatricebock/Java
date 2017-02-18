@@ -30,11 +30,13 @@ public class Login extends JFrame {
         JPasswordField txtPwd = new JPasswordField(15);
         JButton submitBtn = new JButton("Login");
 
+        Panel titlePanel = new Panel(new FlowLayout());
         Panel inputPanel = new Panel(new GridLayout(2, 0));
         Panel usernamePanel = new Panel(new FlowLayout());
         Panel passPanel = new Panel(new FlowLayout());
         Panel buttonPanel = new Panel();
 
+        titlePanel.add(new Label("Welcome to the Royal Gym Club"));
         usernamePanel.add(new Label("Username:"), "Left");
         usernamePanel.add(txtUser);
         passPanel.add(new Label("Password: "), "Left");
@@ -43,6 +45,7 @@ public class Login extends JFrame {
         inputPanel.add(passPanel);
         buttonPanel.add(submitBtn);
 
+        add(titlePanel, "North");
         add(inputPanel, "Center");
         add(buttonPanel, "South");
 

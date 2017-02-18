@@ -5,3 +5,4 @@
 26507:Hendricks:Deluxe
 18269:Nona:Deluxe
 77075:Mia Molovski:Deluxe
+78814:weekly user:Week-Day
