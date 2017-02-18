@@ -31,14 +31,14 @@ class Modify extends JFrame {
         setSize(500, 300);
         setLocation(400, 200);
         setLayout(new BorderLayout());
-        setTitle("Modify Users");
+        setTitle("Modify Members");
 
         //Panels
         Panel inputPanel = new Panel(new GridLayout(0,2, 0, 50));
         Panel buttonPanel = new Panel(new FlowLayout());
 
 
-        Button btnSearch = new Button("Search");
+        JButton btnSearch = new JButton("Search");
         Button btnMenu = new Button("<< Main Menu");
         Button btnSave = new Button("Save Changes");
 

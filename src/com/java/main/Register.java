@@ -20,9 +20,7 @@ import java.util.Scanner;
     String member = "Deluxe";
 
     //Elements requiring global access
-    TextField txtName = new TextField(20);
-    TextField txtMonth = new TextField(20);
-
+    JTextField txtName = new JTextField(20);
 
     public Register () {
         //Frame setup
@@ -33,7 +31,7 @@ import java.util.Scanner;
 
         //Panel with input fields
         Panel inputPanel = new Panel();
-        inputPanel.setLayout(new GridLayout(0,2, 10,10));
+        inputPanel.setLayout(new GridLayout(0,2));
         Panel buttonPanel = new Panel();
         buttonPanel.setLayout(new FlowLayout());
 
@@ -119,7 +117,6 @@ import java.util.Scanner;
         btnClear.addActionListener((new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                txtMonth.setText(" ");
                 txtName.setText(" ");
                 cbMemberType.setSelectedItem("Deluxe");
             }

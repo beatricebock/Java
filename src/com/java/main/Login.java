@@ -27,7 +27,6 @@ public class Login extends JFrame {
         setLayout(new BorderLayout());
 
         JTextField txtUser = new JTextField(15);
-        //TextField txtPwd = new TextField(20);
         JPasswordField txtPwd = new JPasswordField(15);
         JButton submitBtn = new JButton("Login");
 
