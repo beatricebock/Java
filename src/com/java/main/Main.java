@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Created by beatr on 22/1/2017.
+ * Created by Beatrice Bock TP038381
  */
 public class Main {
     public static String user;

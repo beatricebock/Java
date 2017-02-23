@@ -1,6 +1,7 @@
 package com.java.main;
 
 /**
+ * Created by Beatrice Bock TP038381
  * Evaluates the fees according to member type. Receives fee
  * amount as parameters.
  */

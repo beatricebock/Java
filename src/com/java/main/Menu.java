@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 /**
+ * Created by Beatrice Bock TP038381
  * Class for Menu frame
  */
 public class Menu extends JFrame {

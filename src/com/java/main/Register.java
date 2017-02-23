@@ -11,6 +11,7 @@ import java.io.*;
 import java.util.Scanner;
 
 /**
+ * Created by Beatrice Bock TP038381
  * GUI for New Member registration
  */
  class Register extends JFrame {

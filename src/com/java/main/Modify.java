@@ -13,7 +13,8 @@ import java.io.*;
 import java.util.Scanner;
 
 /**
- * Modify Module by Beatrice
+ * Created by Beatrice Bock TP038381
+ * Modify Module
  */
 class Modify extends JFrame {
 

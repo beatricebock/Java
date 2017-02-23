@@ -14,6 +14,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
+ * Created by Beatrice Bock TP038381
  * GUI and methods for Payment module
  */
  class Payment extends JFrame {

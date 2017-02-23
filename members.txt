@@ -6,3 +6,8 @@
 18269:Nona:Deluxe
 77075:Mia Molovski:Deluxe
 78814:weekly user:Week-Day
+94825:Tina Maynard:Deluxe
+17028:Helen:Deluxe
+28701:test2:Week-Day
+14394:Rocky:Non-Deluxe
+78524:Dr Tan:Non-Deluxe

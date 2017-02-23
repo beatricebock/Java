@@ -13,7 +13,8 @@ import java.util.Scanner;
 
 
 /**
- This is the class for the login page GUI
+ * Created by Beatrice Bock TP038381
+ *This is the class for the login page GUI
  */
 public class Login extends JFrame {
 
